@@ -263,6 +263,21 @@ function run() {
 
 document.getElementById("calcBtn").addEventListener("click", run);
 document.getElementById("age50").addEventListener("change", run);
+
+// Snap typed values back within min/max bounds immediately (no waiting for Calculate)
+(function() {
+  document.querySelectorAll('input[type="number"]').forEach(function(el) {
+    el.addEventListener('input', function() {
+      var v = parseFloat(el.value);
+      if (isNaN(v)) return;
+      var mx = parseFloat(el.getAttribute('max'));
+      var mn = parseFloat(el.getAttribute('min')) || 0;
+      if (!isNaN(mx) && v > mx) el.value = mx;
+      if (!isNaN(mn) && v < mn) el.value = mn;
+    });
+  });
+})();
+
 run();
 </script>
 </body>
