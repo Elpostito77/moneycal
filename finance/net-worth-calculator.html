@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0LKD1BP2HB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0LKD1BP2HB');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#1565c0">
+<title>Net Worth Calculator — Assets Minus Liabilities | MoneyCal</title>
+<meta name="description" content="Free net worth calculator. Add your assets and debts to instantly see your net worth, total assets, and total liabilities broken down by category.">
+<link rel="canonical" href="https://moneycal.co/finance/net-worth-calculator.html">
+<link rel="stylesheet" href="../css/main.css">
+<style>
+  .nw-section { margin-bottom: 1.2rem; }
+  .nw-section h3 { font-size: 1rem; margin: 0 0 .6rem; color: var(--text); }
+  .nw-row { display: flex; align-items: center; gap: .6rem; margin-bottom: .5rem; }
+  .nw-row label { flex: 1; font-size: .88rem; color: var(--text-soft); min-width: 140px; }
+  .nw-row .input-wrap { flex: 0 0 160px; }
+  .nw-total { display: flex; justify-content: space-between; align-items: center;
+    padding: .5rem .75rem; border-radius: var(--radius); font-size: .95rem; font-weight: 600; margin-top: .25rem; }
+  .nw-total-assets { background: #e8f5e9; color: #1b5e20; }
+  .nw-total-liab   { background: #fce4ec; color: #880e4f; }
+  @media (prefers-color-scheme: dark) {
+    .nw-total-assets { background: #1b3a1f; color: #a5d6a7; }
+    .nw-total-liab   { background: #3a1a22; color: #f48fb1; }
+  }
+  .nw-positive { color: var(--good); }
+  .nw-negative { color: var(--warn); }
+  @media (max-width: 480px) {
+    .nw-row { flex-wrap: wrap; }
+    .nw-row .input-wrap { flex: 1 1 100%; }
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Net Worth Calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://moneycal.co/" },
+    { "@type": "ListItem", "position": 2, "name": "Finance", "item": "https://moneycal.co/#finance" },
+    { "@type": "ListItem", "position": 3, "name": "Net Worth Calculator" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What is net worth?", "acceptedAnswer": { "@type": "Answer", "text": "Net worth is the total value of everything you own (assets) minus everything you owe (liabilities). It is the single best snapshot of your financial position. A positive net worth means your assets exceed your debts; a negative net worth means you owe more than you own." } },
+    { "@type": "Question", "name": "What counts as an asset?", "acceptedAnswer": { "@type": "Answer", "text": "Assets are anything you own that has monetary value: cash and checking/savings balances, investment accounts (brokerage, 401k, IRA), the current market value of your home, current resale value of your vehicles, and any other valuables. Use today's market value, not what you paid." } },
+    { "@type": "Question", "name": "What counts as a liability?", "acceptedAnswer": { "@type": "Answer", "text": "Liabilities are debts you owe: remaining mortgage balance, auto loan balances, total credit card balances owed, student loan balances, personal loans, and any other money owed. Use the current payoff balance, not the original loan amount." } },
+    { "@type": "Question", "name": "What is a good net worth?", "acceptedAnswer": { "@type": "Answer", "text": "Net worth benchmarks vary widely by age, income, and location. A common rule of thumb: by age 30, aim for 1× your annual salary; by 40, 3×; by 50, 6×; by 60, 8×. These are rough targets, not hard rules. What matters most is that your net worth is growing year over year." } },
+    { "@type": "Question", "name": "Should I include my 401(k) in my net worth?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Your 401(k), IRA, and other retirement accounts are assets you own and should be included in your net worth. Some people calculate two versions — one including retirement accounts and one without — to understand their liquid vs. total net worth." } }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="../index.html">Money<span>Cal</span></a>
+    <nav class="nav">
+      <a href="../index.html#finance">Finance</a>
+      <a href="../index.html#insurance">Insurance</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="ad-slot lead">Advertisement</div>
+
+  <nav class="breadcrumb">
+    <a href="../index.html">Home</a><span>/</span>
+    <a href="../index.html#finance">Finance</a><span>/</span>
+    Net Worth Calculator
+  </nav>
+
+  <h1>📊 Net Worth Calculator</h1>
+  <p class="lede">Add up your assets and debts to get an instant picture of where you stand financially.</p>
+
+  <!-- ABOVE-THE-FOLD TOOL -->
+  <section class="tool" aria-label="Net worth calculator">
+
+    <!-- ASSETS -->
+    <div class="nw-section">
+      <h3>Assets — what you own</h3>
+
+      <div class="nw-row">
+        <label for="cash">Cash &amp; savings</label>
+        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="cash" value="5000" min="0" max="100000000" step="100" inputmode="decimal"></div>
+      </div>
+      <div class="nw-row">
+        <label for="investments">Investment accounts <span class="hint">(brokerage, stocks, crypto)</span></label>
+        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="investments" value="25000" min="0" max="100000000" step="500" inputmode="decimal"></div>
+      </div>
+      <div class="nw-row">
+        <label for="retirement">Retirement accounts <span class="hint">(401k, IRA, pension)</span></label>
+        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="retirement" value="50000" min="0" max="100000000" step="500" inputmode="decimal"></div>
+      </div>
+      <div class="nw-row">
+        <label for="realEstate">Real estate <span class="hint">(current market value)</span></label>
+        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="realEstate" value="300000" min="0" max="100000000" step="1000" inputmode="decimal"></div>
+      </div>
+      <div class="nw-row">
+        <label for="vehicles">Vehicles <span class="hint">(current resale value)</span></label>
+        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="vehicles" value="15000" min="0" max="10000000" step="500" inputmode="decimal"></div>
+      </div>
+      <div class="nw-row">
+        <label for="otherAssets">Other assets <span class="hint">(valuables, business equity)</span></label>
+        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="otherAssets" value="0" min="0" max="100000000" step="100" inputmode="decimal"></div>
+      </div>
+
+      <div class="nw-total nw-total-assets">
+        <span>Total assets</span><span id="totalAssets">$395,000</span>
+      </div>
+    </div>
+
+    <div class="ad-slot" style="margin:0 0 1rem">Advertisement</div>
+
+    <!-- LIABILITIES -->
+    <div class="nw-section">
+      <h3>Liabilities — what you owe</h3>
+
+      <div class="nw-row">
+        <label for="mortgage">Mortgage balance</label>
+        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="mortgage" value="240000" min="0" max="100000000" step="1000" inputmode="decimal"></div>
+      </div>
+      <div class="nw-row">
+        <label for="carLoans">Auto loan balances</label>
+        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="carLoans" value="8000" min="0" max="10000000" step="500" inputmode="decimal"></div>
+      </div>
+      <div class="nw-row">
+        <label for="creditCards">Credit card balances</label>
+        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="creditCards" value="3000" min="0" max="1000000" step="100" inputmode="decimal"></div>
+      </div>
+      <div class="nw-row">
+        <label for="studentLoans">Student loan balances</label>
+        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="studentLoans" value="0" min="0" max="10000000" step="500" inputmode="decimal"></div>
+      </div>
+      <div class="nw-row">
+        <label for="otherDebts">Other debts <span class="hint">(personal loans, medical)</span></label>
+        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="otherDebts" value="0" min="0" max="100000000" step="100" inputmode="decimal"></div>
+      </div>
+
+      <div class="nw-total nw-total-liab">
+        <span>Total liabilities</span><span id="totalLiab">$251,000</span>
+      </div>
+    </div>
+
+    <button class="btn" id="calcBtn">Calculate Net Worth</button>
+
+    <div class="result hidden" id="result" aria-live="polite">
+      <div class="headline-label">Your net worth</div>
+      <div class="headline" id="netWorth">$0</div>
+      <div class="stats">
+        <div class="stat"><div class="k">Total assets</div><div class="v good" id="totalAssetsResult">$0</div></div>
+        <div class="stat"><div class="k">Total liabilities</div><div class="v" style="color:var(--warn)" id="totalLiabResult">$0</div></div>
+        <div class="stat"><div class="k">Debt-to-asset ratio</div><div class="v" id="dta">0%</div></div>
+        <div class="stat"><div class="k">Liquid net worth <span class="hint">(excl. real estate &amp; vehicles)</span></div><div class="v" id="liquidNW">$0</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ad-slot">Advertisement</div>
+
+  <section class="content">
+    <h2>What is net worth and why does it matter?</h2>
+    <p>Net worth is the most complete measure of your financial health. It answers the question: if you sold everything you owned and paid off every debt today, how much would you have left? Unlike income — which measures what's coming in — net worth measures what you've kept and built. A high income with no savings or heavy debt can leave you with a low or negative net worth. A modest income invested consistently over decades can build significant wealth.</p>
+    <p>Tracking net worth over time (quarterly or yearly) is the single best way to measure financial progress. It captures savings, debt payoff, investment growth, and home equity all in one number.</p>
+
+    <h2>How to calculate net worth</h2>
+    <p>The formula is simple: <strong>Net Worth = Total Assets − Total Liabilities</strong>.</p>
+    <ul>
+      <li><strong>Assets</strong>: Use today's market value — not what you paid. For your home, check a recent Zillow estimate or comparable sales. For vehicles, use Kelley Blue Book. For investment accounts, use the current balance.</li>
+      <li><strong>Liabilities</strong>: Use the current payoff balance, not the original loan amount. This is what you'd need to pay today to eliminate the debt.</li>
+    </ul>
+
+    <h2>Liquid vs. total net worth</h2>
+    <p>This calculator also shows your <strong>liquid net worth</strong> — assets you could access quickly (cash, investment accounts, retirement accounts) minus all debts, excluding real estate and vehicles. Liquid net worth matters because home equity and car value can't pay your bills in a crisis. A healthy emergency fund and liquid net worth give you options that illiquid assets don't.</p>
+
+    <div class="note">Use today's market values for all assets, not purchase prices. Your home is worth what it would sell for today, not what you paid. Same for vehicles and investments.</div>
+
+    <h2>Net worth benchmarks by age</h2>
+    <p>These are rough medians — context and income matter far more than hitting a target number on a specific birthday. What matters most is that your net worth grows year over year.</p>
+    <ul>
+      <li><strong>Age 30</strong>: ~1× annual salary</li>
+      <li><strong>Age 40</strong>: ~3× annual salary</li>
+      <li><strong>Age 50</strong>: ~6× annual salary</li>
+      <li><strong>Age 60</strong>: ~8× annual salary</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <div class="faq">
+      <details><summary>What is net worth?</summary><p>Net worth is total assets minus total liabilities — everything you own minus everything you owe. It's the single best snapshot of your financial position. Positive means assets exceed debts; negative means you owe more than you own (common early in life with student loans or a large mortgage).</p></details>
+      <details><summary>What counts as an asset?</summary><p>Any financial resource you own with monetary value: cash, checking and savings balances, brokerage and retirement accounts (at today's value), real estate (at today's market value), vehicle resale value, and other valuables. Always use current market value, not what you paid.</p></details>
+      <details><summary>What counts as a liability?</summary><p>Debts you owe: remaining mortgage balance, auto loan balances, total credit card balances owed, student loan balances, personal loans, medical debt, and any other money owed. Use the current payoff balance.</p></details>
+      <details><summary>What is a good net worth?</summary><p>Benchmarks vary by age and income. A common target: by 30, 1× salary; by 40, 3×; by 50, 6×; by 60, 8×. These are rough guides, not hard rules. Growing your net worth year over year is what matters most regardless of where you start.</p></details>
+      <details><summary>Should I include my 401(k) in net worth?</summary><p>Yes. Retirement accounts are assets you own and belong in your net worth. Some people also track a separate "liquid net worth" that excludes retirement accounts (to gauge short-term financial flexibility), but the standard net worth figure includes them.</p></details>
+    </div>
+
+    <div class="ad-slot">Advertisement</div>
+
+    <h2>Related tools</h2>
+    <ul class="related">
+      <li><a href="401k-calculator.html">401(k) Calculator</a></li>
+      <li><a href="debt-payoff-calculator.html">Debt Payoff Calculator</a></li>
+      <li><a href="fire-calculator.html">FIRE / Early Retirement Calculator</a></li>
+      <li><a href="rent-vs-buy-calculator.html">Rent vs. Buy Calculator</a></li>
+    </ul>
+
+    <div class="ad-slot">Advertisement</div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">Home</a> · <a href="../about.html">About</a>
+    <p class="disclaimer">MoneyCal calculators are for educational and estimation purposes only and do not constitute financial advice. Verify important figures with a qualified professional.</p>
+  </div>
+</footer>
+
+<script>
+"use strict";
+
+var ASSET_IDS = ["cash","investments","retirement","realEstate","vehicles","otherAssets"];
+var LIAB_IDS  = ["mortgage","carLoans","creditCards","studentLoans","otherDebts"];
+
+function clampField(id) {
+  var el = document.getElementById(id);
+  var v = Math.min(Math.max(parseFloat(el.value) || 0, 0), 100000000);
+  el.value = v;
+  return v;
+}
+
+function fmt(n) {
+  var s = "$" + Math.abs(Math.round(n)).toLocaleString("en-US");
+  return n < 0 ? "−" + s : s;
+}
+
+function sumIds(ids) {
+  return ids.reduce(function(acc, id) { return acc + clampField(id); }, 0);
+}
+
+function updateTotals() {
+  var a = sumIds(ASSET_IDS);
+  var l = sumIds(LIAB_IDS);
+  document.getElementById("totalAssets").textContent = fmt(a);
+  document.getElementById("totalLiab").textContent   = fmt(l);
+}
+
+function run() {
+  var totalAssets = sumIds(ASSET_IDS);
+  var totalLiab   = sumIds(LIAB_IDS);
+  var netWorth    = totalAssets - totalLiab;
+
+  // Liquid net worth: excl. real estate and vehicles
+  var illiquid    = clampField("realEstate") + clampField("vehicles");
+  var liquidNW    = (totalAssets - illiquid) - totalLiab;
+
+  var dta = totalAssets > 0 ? (totalLiab / totalAssets * 100) : 0;
+
+  var nwEl = document.getElementById("netWorth");
+  nwEl.textContent = fmt(netWorth);
+  nwEl.className   = "headline " + (netWorth >= 0 ? "nw-positive" : "nw-negative");
+
+  document.getElementById("totalAssetsResult").textContent = fmt(totalAssets);
+  document.getElementById("totalLiabResult").textContent   = fmt(totalLiab);
+  document.getElementById("dta").textContent               = dta.toFixed(1) + "%";
+  document.getElementById("liquidNW").textContent          = fmt(liquidNW);
+
+  document.getElementById("totalAssets").textContent = fmt(totalAssets);
+  document.getElementById("totalLiab").textContent   = fmt(totalLiab);
+
+  document.getElementById("result").classList.remove("hidden");
+}
+
+// Live-update subtotals as user types
+ASSET_IDS.concat(LIAB_IDS).forEach(function(id) {
+  document.getElementById(id).addEventListener("input", updateTotals);
+});
+
+document.getElementById("calcBtn").addEventListener("click", run);
+updateTotals();
+run();
+</script>
+</body>
+</html>

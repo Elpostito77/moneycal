@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0LKD1BP2HB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0LKD1BP2HB');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#1565c0">
+<title>401(k) Calculator — Contribution, Employer Match & Retirement Balance | MoneyCal</title>
+<meta name="description" content="Free 401(k) calculator. Enter your salary, contribution %, employer match, and years to retirement to see your projected balance and how much your employer adds.">
+<link rel="canonical" href="https://moneycal.co/finance/401k-calculator.html">
+<link rel="stylesheet" href="../css/main.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "401(k) Calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://moneycal.co/" },
+    { "@type": "ListItem", "position": 2, "name": "Finance", "item": "https://moneycal.co/#finance" },
+    { "@type": "ListItem", "position": 3, "name": "401(k) Calculator" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What is the 401(k) contribution limit for 2025?", "acceptedAnswer": { "@type": "Answer", "text": "For 2025, you can contribute up to $23,500 to your 401(k) if you are under age 50. If you are 50 or older, you can add a $7,500 catch-up contribution for a total of $31,000. These limits apply to your contributions only; employer matches do not count against your personal cap." } },
+    { "@type": "Question", "name": "How does employer 401(k) matching work?", "acceptedAnswer": { "@type": "Answer", "text": "A common match is 100% of your contributions up to 5% of salary — meaning if you earn $70,000 and contribute 5% ($3,500), your employer also adds $3,500. If you contribute less than 5%, you get a smaller match. To capture the full match, always contribute at least up to the match limit." } },
+    { "@type": "Question", "name": "What annual return should I use for my 401(k)?", "acceptedAnswer": { "@type": "Answer", "text": "A diversified stock-heavy portfolio has historically returned roughly 7% per year after inflation, or 10% before inflation. For conservative estimates, use 6–7%. If your plan has high fees, subtract 0.5–1% for a more accurate projection." } },
+    { "@type": "Question", "name": "Should I contribute to a traditional or Roth 401(k)?", "acceptedAnswer": { "@type": "Answer", "text": "Traditional 401(k) contributions reduce your taxable income today; you pay taxes on withdrawals in retirement. Roth 401(k) contributions use after-tax money but grow and withdraw tax-free. If you expect to be in a higher tax bracket in retirement, Roth is usually better. If you expect a lower bracket, traditional wins." } },
+    { "@type": "Question", "name": "Does my employer match count toward the IRS limit?", "acceptedAnswer": { "@type": "Answer", "text": "No. The $23,500 (2025) employee contribution limit applies only to money you put in. Employer contributions are separate and do not reduce the amount you can personally contribute. The combined limit (your contributions plus employer contributions) is $70,000 for 2025." } }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="../index.html">Money<span>Cal</span></a>
+    <nav class="nav">
+      <a href="../index.html#finance">Finance</a>
+      <a href="../index.html#insurance">Insurance</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="ad-slot lead">Advertisement</div>
+
+  <nav class="breadcrumb">
+    <a href="../index.html">Home</a><span>/</span>
+    <a href="../index.html#finance">Finance</a><span>/</span>
+    401(k) Calculator
+  </nav>
+
+  <h1>🏦 401(k) Calculator</h1>
+  <p class="lede">See your projected retirement balance, annual contributions, and exactly how much free money your employer adds.</p>
+
+  <!-- ABOVE-THE-FOLD TOOL -->
+  <section class="tool" aria-label="401k calculator">
+    <div class="row2">
+      <div class="field">
+        <label for="salary">Annual salary</label>
+        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="salary" value="75000" min="0" max="10000000" step="1000" inputmode="decimal"></div>
+      </div>
+      <div class="field">
+        <label for="currentBal">Current 401(k) balance</label>
+        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="currentBal" value="0" min="0" max="10000000" step="1000" inputmode="decimal"></div>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label for="contribPct">Your contribution</label>
+        <div class="input-wrap"><input type="number" id="contribPct" value="10" min="0" max="100" step="0.5" inputmode="decimal"><span class="affix post">%</span></div>
+      </div>
+      <div class="field">
+        <label for="age50" style="display:flex;align-items:center;gap:.5rem;cursor:pointer">
+          <input type="checkbox" id="age50" style="width:1rem;height:1rem;margin:0"> Age 50+ (catch-up)
+        </label>
+        <div style="font-size:.82rem;color:var(--text-soft);margin-top:.25rem">Adds $7,500 to your IRS limit</div>
+      </div>
+    </div>
+    <fieldset style="border:1px solid var(--border);border-radius:var(--radius);padding:.8rem 1rem;margin:.25rem 0">
+      <legend style="font-size:.88rem;color:var(--text-soft);padding:0 .35rem">Employer match (optional)</legend>
+      <div class="row2" style="margin:0">
+        <div class="field" style="margin:0">
+          <label for="matchPct" style="font-size:.9rem">Match rate</label>
+          <div class="input-wrap"><input type="number" id="matchPct" value="100" min="0" max="300" step="10" inputmode="decimal"><span class="affix post">%</span></div>
+        </div>
+        <div class="field" style="margin:0">
+          <label for="matchLimit" style="font-size:.9rem">Up to (% of salary)</label>
+          <div class="input-wrap"><input type="number" id="matchLimit" value="5" min="0" max="100" step="0.5" inputmode="decimal"><span class="affix post">%</span></div>
+        </div>
+      </div>
+      <div style="font-size:.8rem;color:var(--text-soft);margin-top:.4rem">e.g. "100% match up to 5% of salary" = enter 100 and 5</div>
+    </fieldset>
+    <div class="row2">
+      <div class="field">
+        <label for="returnPct">Expected annual return</label>
+        <div class="input-wrap"><input type="number" id="returnPct" value="7" min="0" max="30" step="0.5" inputmode="decimal"><span class="affix post">%</span></div>
+      </div>
+      <div class="field">
+        <label for="years">Years to retirement</label>
+        <input type="number" id="years" value="30" min="1" max="60" step="1" inputmode="numeric">
+      </div>
+    </div>
+    <button class="btn" id="calcBtn">Calculate</button>
+
+    <div class="result hidden" id="result" aria-live="polite">
+      <div id="limitWarn" class="note hidden" style="margin-bottom:1rem;color:var(--warn)"></div>
+      <div class="headline-label">Projected balance at retirement</div>
+      <div class="headline" id="projectedBal">$0</div>
+      <div class="stats">
+        <div class="stat"><div class="k">Your annual contribution</div><div class="v" id="yourAnnual">$0</div></div>
+        <div class="stat"><div class="k">Employer annual match</div><div class="v good" id="employerAnnual">$0</div></div>
+        <div class="stat"><div class="k">Total added per year</div><div class="v" id="totalAnnual">$0</div></div>
+        <div class="stat"><div class="k">Total you'll contribute</div><div class="v" id="totalContrib">$0</div></div>
+        <div class="stat"><div class="k">Growth (interest + match)</div><div class="v good" id="growthAmt">$0</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ad-slot">Advertisement</div>
+
+  <section class="content">
+    <h2>How to use this 401(k) calculator</h2>
+    <p>Enter your annual salary and the percentage you plan to contribute. Then add your employer's match formula — most employers match 50–100% of contributions up to a cap (typically 3–6% of your salary). Finally, set your expected return rate and years until you plan to retire.</p>
+    <p>The calculator shows your projected balance, annual contributions from both you and your employer, and total growth over your career. The employer match is <strong>free money</strong> — if you're not contributing enough to capture the full match, that's the single highest-return financial move available to you.</p>
+
+    <h2>How the 401(k) math works</h2>
+    <p>Each year, your total contribution (yours + employer match) is invested and earns your expected return. The balance compounds annually using the standard future-value formula: <strong>FV = PV × (1+r)<sup>n</sup> + PMT × [(1+r)<sup>n</sup> − 1] / r</strong>, where PV is your current balance, PMT is total annual contributions, r is the annual return, and n is years to retirement.</p>
+    <p>The 2025 IRS limit on employee contributions is <strong>$23,500</strong> (or $31,000 if you're 50 or older with catch-up). Employer contributions don't count toward this cap.</p>
+
+    <div class="note">This calculator assumes a fixed annual return and constant salary. Real returns vary year to year; use 6–7% for a conservative long-term estimate with a diversified portfolio.</div>
+
+    <h2>Example</h2>
+    <p>Suppose you earn <strong>$75,000</strong>, contribute <strong>10%</strong> ($7,500/year), and your employer matches <strong>100% up to 5%</strong> of salary (adding $3,750). With a <strong>7% return over 30 years</strong>, that $11,250 per year grows to roughly <strong>$1.1 million</strong>. Without the employer match, the same contribution reaches about $750K — your employer adds over $300K to your retirement just from matching.</p>
+
+    <h2>Frequently asked questions</h2>
+    <div class="faq">
+      <details><summary>What is the 401(k) contribution limit for 2025?</summary><p>For 2025, you can contribute up to <strong>$23,500</strong> if you are under age 50. If you are 50 or older, the catch-up provision adds $7,500 for a total limit of <strong>$31,000</strong>. Employer contributions are separate and do not reduce your personal cap.</p></details>
+      <details><summary>How does employer 401(k) matching work?</summary><p>A common formula is "100% match up to 5% of salary." If your salary is $70,000 and you contribute 5% ($3,500), your employer adds another $3,500. Contribute less than 5% and you get a proportionally smaller match. Always contribute at least enough to capture the full match — it's an instant 100% return on that money.</p></details>
+      <details><summary>What annual return should I use?</summary><p>A diversified stock-heavy portfolio has historically returned roughly <strong>7% per year after inflation</strong> (about 10% before inflation). Use 6–7% for conservative planning. If your plan has high expense ratios, subtract 0.5–1% for a more accurate projection.</p></details>
+      <details><summary>Should I contribute to traditional or Roth 401(k)?</summary><p>Traditional contributions reduce your taxable income now; you pay taxes on withdrawals in retirement. Roth contributions are after-tax but grow and withdraw tax-free. If you expect to be in a higher tax bracket in retirement, Roth is generally better. If you expect a lower bracket, traditional usually wins.</p></details>
+      <details><summary>Does my employer match count toward the IRS limit?</summary><p>No. The $23,500 employee limit applies only to your contributions. Employer contributions are separate. The combined 2025 limit (employee + employer) is $70,000.</p></details>
+    </div>
+
+    <div class="ad-slot">Advertisement</div>
+
+    <h2>Related tools</h2>
+    <ul class="related">
+      <li><a href="fire-calculator.html">FIRE / Early Retirement Calculator</a></li>
+      <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+      <li><a href="savings-goal-calculator.html">Savings Goal Calculator</a></li>
+      <li><a href="net-worth-calculator.html">Net Worth Calculator</a></li>
+    </ul>
+
+    <div class="ad-slot">Advertisement</div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">Home</a> · <a href="../about.html">About</a>
+    <p class="disclaimer">MoneyCal calculators are for educational and estimation purposes only and do not constitute financial advice. Verify important figures with a qualified professional.</p>
+  </div>
+</footer>
+
+<script>
+"use strict";
+
+var IRS_LIMIT_UNDER50 = 23500;
+var IRS_LIMIT_50PLUS  = 31000;
+
+function clampField(id, lo, hi) {
+  var el = document.getElementById(id);
+  var v = Math.min(Math.max(parseFloat(el.value) || 0, lo), hi);
+  el.value = v;
+  return v;
+}
+
+function fmt(n) {
+  return "$" + Math.round(n).toLocaleString("en-US");
+}
+
+function run() {
+  var salary     = clampField("salary",     0, 10000000);
+  var currentBal = clampField("currentBal", 0, 10000000);
+  var contribPct = clampField("contribPct", 0, 100);
+  var matchPct   = clampField("matchPct",   0, 300);
+  var matchLimit = clampField("matchLimit", 0, 100);
+  var returnPct  = clampField("returnPct",  0, 30);
+  var years      = clampField("years",      1, 60);
+  var catchUp    = document.getElementById("age50").checked;
+
+  var irsLimit = catchUp ? IRS_LIMIT_50PLUS : IRS_LIMIT_UNDER50;
+
+  // Employee contribution — clamped to IRS limit
+  var rawContrib = salary * (contribPct / 100);
+  var yourAnnual = Math.min(rawContrib, irsLimit);
+
+  // Employer match: matchPct% of salary, up to matchLimit% of salary
+  var effectiveContribPct = Math.min(contribPct / 100, matchLimit / 100);
+  var employerAnnual = salary * effectiveContribPct * (matchPct / 100);
+
+  var totalAnnual = yourAnnual + employerAnnual;
+  var r = returnPct / 100;
+  var n = years;
+
+  // FV = PV*(1+r)^n + PMT*[(1+r)^n - 1]/r
+  var growth = Math.pow(1 + r, n);
+  var projected;
+  if (r === 0) {
+    projected = currentBal + totalAnnual * n;
+  } else {
+    projected = currentBal * growth + totalAnnual * (growth - 1) / r;
+  }
+
+  var totalContrib  = yourAnnual * n;
+  var totalEmployer = employerAnnual * n;
+  var growthAmt     = projected - currentBal - totalContrib - totalEmployer;
+
+  // IRS limit warning
+  var warnEl = document.getElementById("limitWarn");
+  if (rawContrib > irsLimit) {
+    warnEl.textContent = "Note: Your contribution (" + fmt(rawContrib) + "/yr) exceeds the " + (catchUp ? "age 50+" : "under-50") + " IRS limit of " + fmt(irsLimit) + ". The calculator caps your contribution at the limit.";
+    warnEl.classList.remove("hidden");
+  } else {
+    warnEl.classList.add("hidden");
+  }
+
+  document.getElementById("projectedBal").textContent  = fmt(projected);
+  document.getElementById("yourAnnual").textContent    = fmt(yourAnnual);
+  document.getElementById("employerAnnual").textContent = fmt(employerAnnual);
+  document.getElementById("totalAnnual").textContent   = fmt(totalAnnual);
+  document.getElementById("totalContrib").textContent  = fmt(totalContrib + totalEmployer + currentBal);
+  document.getElementById("growthAmt").textContent     = fmt(growthAmt);
+  document.getElementById("result").classList.remove("hidden");
+}
+
+document.getElementById("calcBtn").addEventListener("click", run);
+document.getElementById("age50").addEventListener("change", run);
+run();
+</script>
+</body>
+</html>

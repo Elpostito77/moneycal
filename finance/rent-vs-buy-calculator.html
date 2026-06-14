@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0LKD1BP2HB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0LKD1BP2HB');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#1565c0">
+<title>Rent vs. Buy Calculator — Break-Even & Total Cost Comparison | MoneyCal</title>
+<meta name="description" content="Free rent vs. buy calculator. Compare the true total cost of renting versus buying a home over any time period, including equity, appreciation, and break-even year.">
+<link rel="canonical" href="https://moneycal.co/finance/rent-vs-buy-calculator.html">
+<link rel="stylesheet" href="../css/main.css">
+<style>
+  .verdict-box { border-radius: var(--radius); padding: 1rem 1.2rem; margin: 1rem 0 0; font-weight: 600; font-size: 1.05rem; }
+  .verdict-rent { background: #e8f5e9; color: #1b5e20; border: 1px solid #a5d6a7; }
+  .verdict-buy  { background: #e3f2fd; color: #0d47a1; border: 1px solid #90caf9; }
+  @media (prefers-color-scheme: dark) {
+    .verdict-rent { background: #1b3a1f; color: #a5d6a7; border-color: #2e7d32; }
+    .verdict-buy  { background: #0d2744; color: #90caf9; border-color: #1565c0; }
+  }
+  .breakeven-line { font-size: .9rem; color: var(--text-soft); margin-top: .4rem; font-weight: 400; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Rent vs. Buy Calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://moneycal.co/" },
+    { "@type": "ListItem", "position": 2, "name": "Finance", "item": "https://moneycal.co/#finance" },
+    { "@type": "ListItem", "position": 3, "name": "Rent vs. Buy Calculator" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Is it better to rent or buy a home?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on how long you plan to stay, local home prices relative to rents, and the mortgage rate. Buying typically wins after 5–7 years in most markets because equity accumulation and appreciation outweigh the high upfront costs. In expensive markets with low rent-to-price ratios, renting can be cheaper even long-term." } },
+    { "@type": "Question", "name": "What is the break-even point for buying vs. renting?", "acceptedAnswer": { "@type": "Answer", "text": "The break-even point is the year when the total net cost of buying (all costs paid minus equity built) equals the total cost of renting. Before that year, renting is cheaper. After that year, buying becomes the lower-cost option. Most markets see a break-even between 4 and 8 years." } },
+    { "@type": "Question", "name": "What costs are included in the buying calculation?", "acceptedAnswer": { "@type": "Answer", "text": "This calculator includes: down payment, closing costs (estimated at 3% of purchase price), monthly mortgage principal and interest, property tax, homeowner's insurance, and annual maintenance (1% of home value). Equity from appreciation and principal paydown is subtracted to arrive at the net cost to buy." } },
+    { "@type": "Question", "name": "What does the 20% down payment rule mean?", "acceptedAnswer": { "@type": "Answer", "text": "Putting 20% down avoids private mortgage insurance (PMI), which typically costs 0.5–1% of the loan amount per year. With less than 20% down, add roughly $50–150/month to the buying costs shown here. PMI is usually cancellable once you reach 20% equity." } },
+    { "@type": "Question", "name": "Does this calculator include the tax deduction for mortgage interest?", "acceptedAnswer": { "@type": "Answer", "text": "No — this calculator shows pre-tax costs. The mortgage interest deduction benefits roughly 10–15% of homeowners (those who itemize deductions). For most people, the standard deduction is larger. Consult a tax advisor for your specific situation." } }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="../index.html">Money<span>Cal</span></a>
+    <nav class="nav">
+      <a href="../index.html#finance">Finance</a>
+      <a href="../index.html#insurance">Insurance</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="ad-slot lead">Advertisement</div>
+
+  <nav class="breadcrumb">
+    <a href="../index.html">Home</a><span>/</span>
+    <a href="../index.html#finance">Finance</a><span>/</span>
+    Rent vs. Buy Calculator
+  </nav>
+
+  <h1>🔑 Rent vs. Buy Calculator</h1>
+  <p class="lede">Compare the true total cost of renting versus buying over any time horizon — including equity, appreciation, and the year buying finally pays off.</p>
+
+  <!-- ABOVE-THE-FOLD TOOL -->
+  <section class="tool" aria-label="Rent vs buy calculator">
+
+    <div class="row2">
+      <div class="field">
+        <label for="monthlyRent">Monthly rent</label>
+        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="monthlyRent" value="2000" min="0" max="100000" step="50" inputmode="decimal"></div>
+      </div>
+      <div class="field">
+        <label for="rentIncrease">Annual rent increase</label>
+        <div class="input-wrap"><input type="number" id="rentIncrease" value="3" min="0" max="20" step="0.5" inputmode="decimal"><span class="affix post">%</span></div>
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="field">
+        <label for="homePrice">Home purchase price</label>
+        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="homePrice" value="400000" min="0" max="100000000" step="5000" inputmode="decimal"></div>
+      </div>
+      <div class="field">
+        <label for="downPct">Down payment</label>
+        <div class="input-wrap"><input type="number" id="downPct" value="20" min="0" max="100" step="1" inputmode="decimal"><span class="affix post">%</span></div>
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="field">
+        <label for="mortgageRate">Mortgage rate (30-yr fixed)</label>
+        <div class="input-wrap"><input type="number" id="mortgageRate" value="6.5" min="0" max="20" step="0.125" inputmode="decimal"><span class="affix post">%</span></div>
+      </div>
+      <div class="field">
+        <label for="propertyTax">Property tax rate</label>
+        <div class="input-wrap"><input type="number" id="propertyTax" value="1.1" min="0" max="5" step="0.1" inputmode="decimal"><span class="affix post">%</span></div>
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="field">
+        <label for="appreciation">Home appreciation rate</label>
+        <div class="input-wrap"><input type="number" id="appreciation" value="3" min="0" max="15" step="0.5" inputmode="decimal"><span class="affix post">%</span></div>
+      </div>
+      <div class="field">
+        <label for="compareYears">Years to compare</label>
+        <input type="number" id="compareYears" value="7" min="1" max="30" step="1" inputmode="numeric">
+      </div>
+    </div>
+
+    <button class="btn" id="calcBtn">Calculate</button>
+
+    <div class="result hidden" id="result" aria-live="polite">
+      <div id="verdictBox" class="verdict-box verdict-buy"></div>
+
+      <div class="stats" style="margin-top:1rem">
+        <div class="stat"><div class="k">Total rent paid</div><div class="v" id="totalRent">$0</div></div>
+        <div class="stat"><div class="k">Total ownership costs</div><div class="v" id="totalBuyPaid">$0</div></div>
+        <div class="stat"><div class="k">Equity at year <span id="yearsLabel">7</span></div><div class="v good" id="equity">$0</div></div>
+        <div class="stat"><div class="k">Net cost to buy</div><div class="v" id="netBuyCost">$0</div></div>
+        <div class="stat"><div class="k">Down payment</div><div class="v" id="downPayment">$0</div></div>
+        <div class="stat"><div class="k">Monthly mortgage (P&amp;I)</div><div class="v" id="monthlyPI">$0</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ad-slot">Advertisement</div>
+
+  <section class="content">
+    <h2>How this rent vs. buy calculator works</h2>
+    <p>This calculator compares the total out-of-pocket cost of renting versus buying over the number of years you specify.</p>
+    <p><strong>Renting cost</strong> is your monthly rent, increased by the annual rent-increase rate each year, summed over the comparison period.</p>
+    <p><strong>Buying cost</strong> includes: your down payment, estimated closing costs (3% of purchase price), plus monthly mortgage (principal and interest), property tax, homeowner's insurance (0.5% of home value/year), and maintenance (1% of home value/year). These costs are summed over the comparison period.</p>
+    <p><strong>Net cost to buy</strong> subtracts the equity you've built — both from principal paydown and home appreciation — from total costs paid. This is the apples-to-apples number to compare against total rent paid.</p>
+    <p>The <strong>break-even year</strong> is when the net cost to buy first drops below the cumulative rent cost. Before that year, renting costs less. After it, buying does.</p>
+
+    <div class="note">This calculator does not include PMI (required with less than 20% down, typically $50–150/month), HOA fees, or tax deductions. Add these manually if applicable to your situation.</div>
+
+    <h2>Example</h2>
+    <p>You're deciding between <strong>renting at $2,000/month</strong> (3% annual increases) and <strong>buying a $400,000 home</strong> with 20% down at a 6.5% mortgage rate. Over 7 years: total rent paid is about $163,000. Total ownership costs (down + mortgage + tax + maintenance) are about $285,000 — but you've built roughly $140,000 in equity (appreciation + principal paid). Net cost to buy: ~$145,000. Buying wins — by about year 6–7 in this scenario.</p>
+
+    <h2>Frequently asked questions</h2>
+    <div class="faq">
+      <details><summary>Is it better to rent or buy?</summary><p>It depends on how long you plan to stay, local home prices relative to rents, and the mortgage rate. Buying typically wins after 5–7 years in most markets because equity accumulation outweighs the high upfront costs. In expensive markets with high price-to-rent ratios, renting can be cheaper even long-term.</p></details>
+      <details><summary>What is the break-even point?</summary><p>The break-even point is the year when the net cost of buying equals the cumulative rent you would have paid. Before that year, renting is cheaper on a cash-flow basis. After it, buying becomes the lower total-cost option. Most markets see a break-even between 4 and 8 years.</p></details>
+      <details><summary>What costs are included in the buying calculation?</summary><p>Down payment, closing costs (3% of purchase price), monthly mortgage P&I, property tax, homeowner's insurance (0.5%/yr), and maintenance (1%/yr). Equity from appreciation and principal paydown is subtracted to get the net cost to buy.</p></details>
+      <details><summary>What about the 20% down payment rule?</summary><p>Putting 20% down avoids PMI, which typically adds $50–150/month on the loan. With less than 20% down, add your PMI cost to the monthly ownership costs shown. PMI is cancellable once you reach 20% equity — usually in 7–10 years depending on your rate and appreciation.</p></details>
+      <details><summary>Does this include the mortgage interest deduction?</summary><p>No. The mortgage interest deduction benefits roughly 10–15% of homeowners (those who itemize). For most people, the standard deduction is larger. Consult a tax advisor for your specific situation.</p></details>
+    </div>
+
+    <div class="ad-slot">Advertisement</div>
+
+    <h2>Related tools</h2>
+    <ul class="related">
+      <li><a href="mortgage-payoff-calculator.html">Mortgage Payoff Calculator</a></li>
+      <li><a href="net-worth-calculator.html">Net Worth Calculator</a></li>
+      <li><a href="savings-goal-calculator.html">Savings Goal Calculator</a></li>
+      <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+    </ul>
+
+    <div class="ad-slot">Advertisement</div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">Home</a> · <a href="../about.html">About</a>
+    <p class="disclaimer">MoneyCal calculators are for educational and estimation purposes only and do not constitute financial advice. Verify important figures with a qualified professional.</p>
+  </div>
+</footer>
+
+<script>
+"use strict";
+
+function clampField(id, lo, hi) {
+  var el = document.getElementById(id);
+  var v = Math.min(Math.max(parseFloat(el.value) || 0, lo), hi);
+  el.value = v;
+  return v;
+}
+
+function fmt(n) {
+  return "$" + Math.round(n).toLocaleString("en-US");
+}
+
+function calcMonthlyPI(loanAmt, annualRate, termMonths) {
+  if (annualRate === 0) return loanAmt / termMonths;
+  var r = annualRate / 100 / 12;
+  return loanAmt * r * Math.pow(1 + r, termMonths) / (Math.pow(1 + r, termMonths) - 1);
+}
+
+function remainingBalance(loanAmt, annualRate, termMonths, paymentsMade) {
+  if (annualRate === 0) return Math.max(0, loanAmt - (loanAmt / termMonths) * paymentsMade);
+  var r = annualRate / 100 / 12;
+  var monthlyPI = loanAmt * r * Math.pow(1 + r, termMonths) / (Math.pow(1 + r, termMonths) - 1);
+  return loanAmt * Math.pow(1 + r, paymentsMade) - monthlyPI * (Math.pow(1 + r, paymentsMade) - 1) / r;
+}
+
+function findBreakEven(homePrice, downPct, mortgageRate, propertyTax, appreciation, monthlyRent, rentIncrease, maxYrs) {
+  var loanAmt = homePrice * (1 - downPct / 100);
+  var monthlyPI = calcMonthlyPI(loanAmt, mortgageRate, 360);
+  var monthlyTax = homePrice * (propertyTax / 100) / 12;
+  var monthlyIns = homePrice * 0.005 / 12;
+  var monthlyMaint = homePrice * 0.01 / 12;
+  var closingCosts = homePrice * 0.03;
+  var downPayment = homePrice * (downPct / 100);
+
+  var cumulRent = 0;
+  var cumulBuy = downPayment + closingCosts;
+  var curRent = monthlyRent;
+  var curHomeVal = homePrice;
+
+  for (var yr = 1; yr <= maxYrs; yr++) {
+    cumulRent += curRent * 12;
+    curRent *= (1 + rentIncrease / 100);
+    cumulBuy += (monthlyPI + monthlyTax + monthlyIns + monthlyMaint) * 12;
+    curHomeVal *= (1 + appreciation / 100);
+    var remBal = Math.max(0, remainingBalance(loanAmt, mortgageRate, 360, yr * 12));
+    var equity = curHomeVal - remBal;
+    var netBuy = cumulBuy - equity;
+    if (netBuy <= cumulRent) return yr;
+  }
+  return null;
+}
+
+function run() {
+  var monthlyRent  = clampField("monthlyRent",   0, 100000);
+  var rentIncrease = clampField("rentIncrease",  0, 20);
+  var homePrice    = clampField("homePrice",      0, 100000000);
+  var downPct      = clampField("downPct",        0, 100);
+  var mortgageRate = clampField("mortgageRate",   0, 20);
+  var propertyTax  = clampField("propertyTax",    0, 5);
+  var appreciation = clampField("appreciation",   0, 15);
+  var compareYears = clampField("compareYears",   1, 30);
+
+  document.getElementById("yearsLabel").textContent = compareYears;
+
+  var loanAmt    = homePrice * (1 - downPct / 100);
+  var downPayAmt = homePrice * (downPct / 100);
+  var closingCosts = homePrice * 0.03;
+  var monthly    = calcMonthlyPI(loanAmt, mortgageRate, 360);
+  var monthlyTax = homePrice * (propertyTax / 100) / 12;
+  var monthlyIns = homePrice * 0.005 / 12;
+  var monthlyMaint = homePrice * 0.01 / 12;
+
+  // Simulate year by year
+  var totalRent = 0;
+  var totalBuyPaid = downPayAmt + closingCosts;
+  var curRent = monthlyRent;
+  var curHomeVal = homePrice;
+
+  for (var yr = 1; yr <= compareYears; yr++) {
+    totalRent += curRent * 12;
+    curRent *= (1 + rentIncrease / 100);
+    totalBuyPaid += (monthly + monthlyTax + monthlyIns + monthlyMaint) * 12;
+    curHomeVal *= (1 + appreciation / 100);
+  }
+
+  var remBal = Math.max(0, remainingBalance(loanAmt, mortgageRate, 360, compareYears * 12));
+  var equity = curHomeVal - remBal;
+  var netBuyCost = totalBuyPaid - equity;
+
+  var breakevenYr = findBreakEven(homePrice, downPct, mortgageRate, propertyTax, appreciation, monthlyRent, rentIncrease, 30);
+
+  var verdictBox = document.getElementById("verdictBox");
+  var diff = Math.abs(totalRent - netBuyCost);
+  if (netBuyCost < totalRent) {
+    verdictBox.className = "verdict-box verdict-buy";
+    verdictBox.innerHTML = "Buying is cheaper by " + fmt(diff) + " over " + compareYears + " years."
+      + (breakevenYr ? '<div class="breakeven-line">Break-even: year ' + breakevenYr + ' (before that, renting costs less)</div>' : '');
+  } else if (totalRent < netBuyCost) {
+    verdictBox.className = "verdict-box verdict-rent";
+    verdictBox.innerHTML = "Renting is cheaper by " + fmt(diff) + " over " + compareYears + " years."
+      + (breakevenYr ? '<div class="breakeven-line">Break-even: year ' + breakevenYr + ' — buying wins after that</div>' : '<div class="breakeven-line">Buying doesn\'t break even within 30 years at these inputs.</div>');
+  } else {
+    verdictBox.className = "verdict-box verdict-buy";
+    verdictBox.innerHTML = "Renting and buying cost the same over " + compareYears + " years.";
+  }
+
+  document.getElementById("totalRent").textContent    = fmt(totalRent);
+  document.getElementById("totalBuyPaid").textContent = fmt(totalBuyPaid);
+  document.getElementById("equity").textContent       = fmt(equity);
+  document.getElementById("netBuyCost").textContent   = fmt(netBuyCost);
+  document.getElementById("downPayment").textContent  = fmt(downPayAmt);
+  document.getElementById("monthlyPI").textContent    = fmt(monthly);
+  document.getElementById("result").classList.remove("hidden");
+}
+
+document.getElementById("calcBtn").addEventListener("click", run);
+run();
+</script>
+</body>
+</html>
