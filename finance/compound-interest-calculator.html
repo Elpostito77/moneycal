@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#1565c0">
+<title>Compound Interest Calculator — Daily, Monthly & Yearly | MoneyCal</title>
+<meta name="description" content="Free compound interest calculator. See how your savings grow with regular contributions, any interest rate, and daily, monthly, or yearly compounding. Instant results.">
+<link rel="canonical" href="https://moneycal.co/finance/compound-interest-calculator.html">
+<link rel="stylesheet" href="../css/main.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Compound Interest Calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://moneycal.co/" },
+    { "@type": "ListItem", "position": 2, "name": "Finance", "item": "https://moneycal.co/#finance" },
+    { "@type": "ListItem", "position": 3, "name": "Compound Interest Calculator" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What is compound interest?", "acceptedAnswer": { "@type": "Answer", "text": "Compound interest is interest earned on both your original money and on the interest it has already earned. Over time this creates exponential growth, because each period you earn interest on a slightly larger balance." } },
+    { "@type": "Question", "name": "How is compound interest calculated?", "acceptedAnswer": { "@type": "Answer", "text": "The core formula is A = P(1 + r/n)^(nt), where P is the starting principal, r is the annual rate as a decimal, n is the number of times interest compounds per year, and t is the number of years. When you add regular contributions, each deposit also compounds for the remaining time." } },
+    { "@type": "Question", "name": "Does more frequent compounding earn more money?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, but the difference is small. Daily compounding earns slightly more than monthly, which earns slightly more than yearly, for the same nominal rate. The gap between daily and monthly compounding is usually a fraction of a percent." } },
+    { "@type": "Question", "name": "What is the difference between APR and APY?", "acceptedAnswer": { "@type": "Answer", "text": "APR is the nominal annual rate before compounding. APY (annual percentage yield) is the effective rate after compounding is applied. APY is always equal to or higher than APR for the same account." } },
+    { "@type": "Question", "name": "Are contributions added before or after interest?", "acceptedAnswer": { "@type": "Answer", "text": "This calculator adds each contribution at the end of the period (an ordinary annuity), which is the standard convention. Contributing at the start of each period would earn slightly more interest." } }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="../index.html">Money<span>Cal</span></a>
+    <nav class="nav">
+      <a href="../index.html#finance">Finance</a>
+      <a href="../index.html#insurance">Insurance</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="ad-slot lead">Advertisement</div>
+
+  <nav class="breadcrumb">
+    <a href="../index.html">Home</a><span>/</span>
+    <a href="../index.html#finance">Finance</a><span>/</span>
+    Compound Interest Calculator
+  </nav>
+
+  <h1>📈 Compound Interest Calculator</h1>
+  <p class="lede">See exactly how your money grows over time — with regular contributions and your choice of compounding frequency.</p>
+
+  <!-- ABOVE-THE-FOLD TOOL -->
+  <section class="tool" aria-label="Compound interest calculator">
+    <div class="field">
+      <label for="principal">Starting amount <span class="hint">(initial principal)</span></label>
+      <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="principal" value="10000" min="0" step="100" inputmode="decimal"></div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label for="contribution">Regular contribution</label>
+        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="contribution" value="500" min="0" step="50" inputmode="decimal"></div>
+      </div>
+      <div class="field">
+        <label for="contribFreq">Contribution frequency</label>
+        <select id="contribFreq">
+          <option value="12" selected>Monthly</option>
+          <option value="1">Yearly</option>
+        </select>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label for="rate">Annual interest rate</label>
+        <div class="input-wrap"><input type="number" id="rate" value="7" min="0" step="0.1" inputmode="decimal"><span class="affix post">%</span></div>
+      </div>
+      <div class="field">
+        <label for="years">Years</label>
+        <input type="number" id="years" value="20" min="1" max="100" step="1" inputmode="numeric">
+      </div>
+    </div>
+    <div class="field">
+      <label for="compound">Compounding frequency</label>
+      <select id="compound">
+        <option value="365">Daily</option>
+        <option value="12" selected>Monthly</option>
+        <option value="4">Quarterly</option>
+        <option value="1">Yearly</option>
+      </select>
+    </div>
+    <button class="btn" id="calcBtn">Calculate</button>
+
+    <div class="result hidden" id="result" aria-live="polite">
+      <div class="headline-label">Future balance</div>
+      <div class="headline" id="future">$0</div>
+      <div class="stats">
+        <div class="stat"><div class="k">Total contributed</div><div class="v" id="contributed">$0</div></div>
+        <div class="stat"><div class="k">Total interest earned</div><div class="v good" id="interest">$0</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ad-slot">Advertisement</div>
+
+  <section class="content">
+    <h2>What is a compound interest calculator?</h2>
+    <p>A compound interest calculator shows how a sum of money grows when it earns interest, and that interest then earns interest of its own. It's the single most important concept in long-term saving and investing: the earlier you start and the longer you leave money invested, the more the curve bends upward. This tool adds optional regular deposits so you can model a real savings or investing plan, not just a one-time lump sum.</p>
+
+    <h2>How to use this calculator</h2>
+    <ol>
+      <li><strong>Enter your starting amount</strong> — the money you have invested today (use 0 if you're starting from scratch).</li>
+      <li><strong>Add a regular contribution</strong> and choose monthly or yearly. This is the deposit you plan to make every period.</li>
+      <li><strong>Set the interest rate, number of years, and compounding frequency</strong>, then press Calculate to see your future balance, total contributions, and total interest earned.</li>
+    </ol>
+
+    <h2>Example</h2>
+    <p>Suppose you start with <strong>$10,000</strong>, add <strong>$500 every month</strong>, and earn a <strong>7% annual return</strong> compounded monthly for <strong>20 years</strong>. You'll have contributed $130,000 of your own money ($10,000 + $500 × 240 months), but your balance grows to roughly <strong>$300,000</strong>. The extra ~$170,000 is pure compound interest — money your money made for you.</p>
+
+    <div class="note">This calculator assumes a fixed interest rate and that contributions are made at the end of each period. Real investment returns vary year to year; use a conservative average rate for long-term estimates.</div>
+
+    <h2>Frequently asked questions</h2>
+    <div class="faq">
+      <details><summary>What is compound interest?</summary><p>Compound interest is interest earned on both your original money and on the interest it has already earned. Over time this creates exponential growth, because each period you earn interest on a slightly larger balance.</p></details>
+      <details><summary>How is compound interest calculated?</summary><p>The core formula is <strong>A = P(1 + r/n)<sup>nt</sup></strong>, where P is the starting principal, r is the annual rate as a decimal, n is how many times interest compounds per year, and t is the number of years. When you add regular contributions, each deposit also compounds for the remaining time.</p></details>
+      <details><summary>Does more frequent compounding earn more money?</summary><p>Yes, but the difference is small. Daily compounding earns slightly more than monthly, which earns slightly more than yearly, for the same nominal rate. The gap is usually a fraction of a percent.</p></details>
+      <details><summary>What is the difference between APR and APY?</summary><p>APR is the nominal annual rate before compounding. APY (annual percentage yield) is the effective rate after compounding is applied. APY is always equal to or higher than APR for the same account.</p></details>
+      <details><summary>Are contributions added before or after interest?</summary><p>This calculator adds each contribution at the end of the period (an ordinary annuity), the standard convention. Contributing at the start of each period would earn slightly more interest.</p></details>
+    </div>
+
+    <div class="ad-slot">Advertisement</div>
+
+    <h2>Related tools</h2>
+    <ul class="related">
+      <li><a href="savings-goal-calculator.html">Savings Goal Calculator</a></li>
+      <li><a href="fire-calculator.html">FIRE / Early Retirement Calculator</a></li>
+      <li><a href="debt-payoff-calculator.html">Debt Payoff Calculator</a></li>
+      <li><a href="car-loan-calculator.html">Car Loan Calculator</a></li>
+    </ul>
+
+    <div class="ad-slot">Advertisement</div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">Home</a> · <a href="../about.html">About</a>
+    <p class="disclaimer">MoneyCal calculators are for educational and estimation purposes only and do not constitute financial advice. Verify important figures with a qualified professional.</p>
+  </div>
+</footer>
+
+<script>
+"use strict";
+// Core math — simulate period by period for accuracy with mixed contribution/compounding frequency.
+function computeCompound({ principal, contribution, contribFreq, ratePct, years, compFreq }) {
+  var r = ratePct / 100;
+  // Per-month growth factor that honors the chosen compounding frequency:
+  // (1 + r/n)^(n/12) applied 12 times/year reproduces (1 + r/n)^(nt) over t years.
+  var monthlyGrowth = Math.pow(1 + r / compFreq, compFreq / 12);
+  var months = Math.round(years * 12);
+  var monthlyContribution = contribFreq === 12 ? contribution : 0;
+  var balance = principal;
+  var contributed = principal;
+  for (var m = 1; m <= months; m++) {
+    balance *= monthlyGrowth;                 // grow first
+    if (contribFreq === 12) {                 // monthly deposit at period end
+      balance += monthlyContribution;
+      contributed += monthlyContribution;
+    } else if (m % 12 === 0) {                // yearly deposit at end of each year
+      balance += contribution;
+      contributed += contribution;
+    }
+  }
+  return { future: balance, contributed: contributed, interest: balance - contributed };
+}
+
+function fmt(n) {
+  return "$" + Math.round(n).toLocaleString("en-US");
+}
+
+function run() {
+  var data = {
+    principal:    parseFloat(document.getElementById("principal").value) || 0,
+    contribution: parseFloat(document.getElementById("contribution").value) || 0,
+    contribFreq:  parseInt(document.getElementById("contribFreq").value, 10),
+    ratePct:      parseFloat(document.getElementById("rate").value) || 0,
+    years:        parseFloat(document.getElementById("years").value) || 0,
+    compFreq:     parseInt(document.getElementById("compound").value, 10)
+  };
+  var out = computeCompound(data);
+  document.getElementById("future").textContent = fmt(out.future);
+  document.getElementById("contributed").textContent = fmt(out.contributed);
+  document.getElementById("interest").textContent = fmt(out.interest);
+  document.getElementById("result").classList.remove("hidden");
+}
+
+document.getElementById("calcBtn").addEventListener("click", run);
+run(); // show a result on load
+</script>
+</body>
+</html>

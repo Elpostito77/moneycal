@@ -1,0 +1,15 @@
+{
+  "name": "MoneyCal — Free Finance Calculators",
+  "short_name": "MoneyCal",
+  "description": "Free, fast calculators for everyday money decisions — compound interest, debt payoff, savings goals, FIRE, car loans, and more.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1565c0",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#1565c0">
+<title>Car Loan Calculator — Monthly Auto Payment & Total Interest | MoneyCal</title>
+<meta name="description" content="Free car loan calculator. Estimate your monthly auto payment, total interest, and loan cost from the vehicle price, down payment, trade-in, sales tax, APR, and term.">
+<link rel="canonical" href="https://moneycal.co/finance/car-loan-calculator.html">
+<link rel="stylesheet" href="../css/main.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Car Loan Calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://moneycal.co/" },
+    { "@type": "ListItem", "position": 2, "name": "Finance", "item": "https://moneycal.co/#finance" },
+    { "@type": "ListItem", "position": 3, "name": "Car Loan Calculator" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How is a car loan payment calculated?", "acceptedAnswer": { "@type": "Answer", "text": "Your monthly payment is the amount financed spread over the loan term using standard amortization. The formula is M = P x r / (1 - (1 + r)^-n), where P is the amount financed, r is the monthly interest rate (APR divided by 12), and n is the number of months." } },
+    { "@type": "Question", "name": "Does a trade-in reduce sales tax?", "acceptedAnswer": { "@type": "Answer", "text": "In most US states, yes. The trade-in value is subtracted from the vehicle price before sales tax is applied, so a trade-in lowers both the amount you finance and the tax you owe. A few states tax the full purchase price regardless." } },
+    { "@type": "Question", "name": "What is included in the amount financed?", "acceptedAnswer": { "@type": "Answer", "text": "The amount financed is the vehicle price plus sales tax, minus your down payment and trade-in value. Fees like title and registration can also be rolled in, but this calculator focuses on price, tax, down payment, and trade-in." } },
+    { "@type": "Question", "name": "How does the loan term affect my payment?", "acceptedAnswer": { "@type": "Answer", "text": "A longer term lowers your monthly payment but increases the total interest you pay, because you borrow the money for longer. A shorter term raises the monthly payment but saves money overall. Compare a few terms to find the balance you can afford." } },
+    { "@type": "Question", "name": "What APR should I expect on a car loan?", "acceptedAnswer": { "@type": "Answer", "text": "Auto loan APRs depend heavily on your credit score, whether the car is new or used, and the lender. Borrowers with strong credit get the lowest rates, while used cars and weaker credit carry higher rates. Get pre-approved to know your real number before shopping." } }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="../index.html">Money<span>Cal</span></a>
+    <nav class="nav">
+      <a href="../index.html#finance">Finance</a>
+      <a href="../index.html#insurance">Insurance</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="ad-slot lead">Advertisement</div>
+
+  <nav class="breadcrumb">
+    <a href="../index.html">Home</a><span>/</span>
+    <a href="../index.html#finance">Finance</a><span>/</span>
+    Car Loan Calculator
+  </nav>
+
+  <h1>🚗 Car Loan Calculator</h1>
+  <p class="lede">Estimate your monthly auto payment and see exactly how much of it is interest.</p>
+
+  <!-- ABOVE-THE-FOLD TOOL -->
+  <section class="tool" aria-label="Car loan calculator">
+    <div class="field">
+      <label for="price">Vehicle price</label>
+      <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="price" value="35000" min="0" step="500" inputmode="decimal"></div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label for="down">Down payment</label>
+        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="down" value="5000" min="0" step="500" inputmode="decimal"></div>
+      </div>
+      <div class="field">
+        <label for="trade">Trade-in value</label>
+        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="trade" value="3000" min="0" step="500" inputmode="decimal"></div>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label for="tax">Sales tax</label>
+        <div class="input-wrap"><input type="number" id="tax" value="8" min="0" step="0.1" inputmode="decimal"><span class="affix post">%</span></div>
+      </div>
+      <div class="field">
+        <label for="apr">APR</label>
+        <div class="input-wrap"><input type="number" id="apr" value="6" min="0" step="0.1" inputmode="decimal"><span class="affix post">%</span></div>
+      </div>
+    </div>
+    <div class="field">
+      <label for="term">Loan term</label>
+      <select id="term">
+        <option value="36">36 months (3 years)</option>
+        <option value="48">48 months (4 years)</option>
+        <option value="60" selected>60 months (5 years)</option>
+        <option value="72">72 months (6 years)</option>
+        <option value="84">84 months (7 years)</option>
+      </select>
+    </div>
+    <button class="btn" id="calcBtn">Calculate payment</button>
+
+    <div class="result hidden" id="result" aria-live="polite">
+      <div class="headline-label">Monthly payment</div>
+      <div class="headline" id="payment">—</div>
+      <div class="stats">
+        <div class="stat"><div class="k">Amount financed</div><div class="v" id="financed">—</div></div>
+        <div class="stat"><div class="k">Sales tax</div><div class="v" id="taxAmt">—</div></div>
+        <div class="stat"><div class="k">Total interest</div><div class="v warn" id="interest">—</div></div>
+        <div class="stat"><div class="k">Total of payments</div><div class="v" id="totalPaid">—</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ad-slot">Advertisement</div>
+
+  <section class="content">
+    <h2>What is a car loan calculator?</h2>
+    <p>A car loan calculator turns a sticker price into the number that actually matters when you're shopping: your monthly payment. It accounts for your down payment, trade-in, sales tax, interest rate, and loan length, then shows what you'll pay each month and how much of the total is interest versus the car itself. Running a few scenarios before you walk into a dealership is the single best way to avoid being talked into a longer term or a payment you can't comfortably carry.</p>
+
+    <h2>How to use this calculator</h2>
+    <ol>
+      <li><strong>Enter the vehicle price</strong>, then your down payment and any trade-in value — both reduce how much you borrow.</li>
+      <li><strong>Add your sales tax rate and APR.</strong> The tax applies to the price minus your trade-in in most states; the APR depends on your credit.</li>
+      <li><strong>Choose a loan term</strong> and press Calculate to see the monthly payment, amount financed, total interest, and total cost.</li>
+    </ol>
+
+    <h2>Example</h2>
+    <p>You're buying a <strong>$35,000</strong> car with <strong>$5,000</strong> down and a <strong>$3,000</strong> trade-in, in a state with <strong>8% sales tax</strong>, financed at <strong>6% APR over 60 months</strong>. Tax is charged on $32,000 (price minus trade-in), adding <strong>$2,560</strong>. You finance $29,560, giving a monthly payment of about <strong>$572</strong>. Over five years you'll pay roughly <strong>$4,728</strong> in interest. Stretch the same loan to 72 months and the payment drops near $490 — but total interest climbs above $5,700.</p>
+
+    <div class="note">This is an estimate. Real deals may include title, registration, documentation, and dealer fees that can be rolled into the loan, plus gap insurance or extended warranties. Always confirm the final amount financed and APR on your loan agreement.</div>
+
+    <h2>Frequently asked questions</h2>
+    <div class="faq">
+      <details><summary>How is a car loan payment calculated?</summary><p>Your payment spreads the amount financed over the term using amortization: <strong>M = P × r / (1 − (1 + r)<sup>−n</sup>)</strong>, where P is the amount financed, r is the monthly rate (APR ÷ 12), and n is the number of months.</p></details>
+      <details><summary>Does a trade-in reduce sales tax?</summary><p>In most US states, yes — the trade-in value is subtracted from the price before tax, lowering both what you finance and the tax owed. A few states tax the full price regardless.</p></details>
+      <details><summary>What is included in the amount financed?</summary><p>Vehicle price plus sales tax, minus your down payment and trade-in. Title and registration fees can also be rolled in; this calculator focuses on price, tax, down, and trade-in.</p></details>
+      <details><summary>How does the loan term affect my payment?</summary><p>A longer term lowers the monthly payment but raises total interest, since you borrow longer. A shorter term costs more monthly but saves overall. Compare a few terms to find your balance.</p></details>
+      <details><summary>What APR should I expect?</summary><p>It depends on your credit score, new vs. used, and the lender. Strong credit gets the lowest rates; used cars and weaker credit carry higher ones. Get pre-approved to know your real number before shopping.</p></details>
+    </div>
+
+    <div class="ad-slot">Advertisement</div>
+
+    <h2>Related tools</h2>
+    <ul class="related">
+      <li><a href="mortgage-payoff-calculator.html">Mortgage Payoff Calculator</a></li>
+      <li><a href="debt-payoff-calculator.html">Debt Payoff Calculator</a></li>
+      <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+      <li><a href="savings-goal-calculator.html">Savings Goal Calculator</a></li>
+    </ul>
+
+    <div class="ad-slot">Advertisement</div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">Home</a> · <a href="../about.html">About</a>
+    <p class="disclaimer">MoneyCal calculators are for educational and estimation purposes only and do not constitute financial advice. Verify important figures with a qualified professional.</p>
+  </div>
+</footer>
+
+<script>
+"use strict";
+function computeLoan({ price, down, trade, taxPct, aprPct, term }) {
+  var taxable = Math.max(0, price - trade);      // trade-in reduces taxable amount (most states)
+  var tax = taxable * (taxPct / 100);
+  var financed = Math.max(0, price + tax - down - trade);
+  var r = aprPct / 100 / 12;
+  var payment;
+  if (financed === 0) {
+    payment = 0;
+  } else if (r === 0) {
+    payment = financed / term;
+  } else {
+    payment = financed * r / (1 - Math.pow(1 + r, -term));
+  }
+  var totalPaid = payment * term;
+  var interest = totalPaid - financed;
+  return { tax: tax, financed: financed, payment: payment, totalPaid: totalPaid, interest: interest };
+}
+
+function fmtMoney(n) { return "$" + Math.round(n).toLocaleString("en-US"); }
+
+function run() {
+  var data = {
+    price:  parseFloat(document.getElementById("price").value) || 0,
+    down:   parseFloat(document.getElementById("down").value) || 0,
+    trade:  parseFloat(document.getElementById("trade").value) || 0,
+    taxPct: parseFloat(document.getElementById("tax").value) || 0,
+    aprPct: parseFloat(document.getElementById("apr").value) || 0,
+    term:   parseInt(document.getElementById("term").value, 10)
+  };
+  var out = computeLoan(data);
+  document.getElementById("payment").textContent = fmtMoney(out.payment);
+  document.getElementById("financed").textContent = fmtMoney(out.financed);
+  document.getElementById("taxAmt").textContent = fmtMoney(out.tax);
+  document.getElementById("interest").textContent = fmtMoney(out.interest);
+  document.getElementById("totalPaid").textContent = fmtMoney(out.totalPaid);
+  document.getElementById("result").classList.remove("hidden");
+}
+
+document.getElementById("calcBtn").addEventListener("click", run);
+run();
+</script>
+</body>
+</html>

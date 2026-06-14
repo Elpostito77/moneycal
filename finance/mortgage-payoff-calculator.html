@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#1565c0">
+<title>Mortgage Payoff Calculator — Extra Payment Savings | MoneyCal</title>
+<meta name="description" content="Free mortgage payoff calculator. See how much sooner you'll be mortgage-free and how much interest you save by making extra monthly or one-time principal payments.">
+<link rel="canonical" href="https://moneycal.co/finance/mortgage-payoff-calculator.html">
+<link rel="stylesheet" href="../css/main.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Mortgage Payoff Calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://moneycal.co/" },
+    { "@type": "ListItem", "position": 2, "name": "Finance", "item": "https://moneycal.co/#finance" },
+    { "@type": "ListItem", "position": 3, "name": "Mortgage Payoff Calculator" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How does paying extra on my mortgage help?", "acceptedAnswer": { "@type": "Answer", "text": "Every extra dollar goes straight to principal, so you owe less and are charged less interest in every future month. Because mortgages front-load interest, even small extra payments early in the loan compound into large interest savings and a much earlier payoff date." } },
+    { "@type": "Question", "name": "Is it better to pay extra monthly or one large lump sum?", "acceptedAnswer": { "@type": "Answer", "text": "Both reduce principal and save interest. A lump sum applied today saves the most per dollar because it cuts the balance sooner, but a consistent extra monthly payment is easier to budget and still saves tens of thousands over the life of a loan. This calculator lets you model either or both." } },
+    { "@type": "Question", "name": "Should I pay off my mortgage early or invest instead?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on your mortgage rate versus your expected investment return, your tax situation, and how much you value being debt-free. Paying down a 7 percent mortgage is a guaranteed 7 percent return; investing might beat that but carries risk. Many people do some of both." } },
+    { "@type": "Question", "name": "Will my lender charge a prepayment penalty?", "acceptedAnswer": { "@type": "Answer", "text": "Most modern conventional mortgages have no prepayment penalty, but some loans do, especially older or non-conforming ones. Check your loan documents or ask your servicer before making large extra payments, and tell them to apply the extra to principal." } },
+    { "@type": "Question", "name": "Does this calculator include taxes and insurance?", "acceptedAnswer": { "@type": "Answer", "text": "No. It models principal and interest only, which is the part of your payment that extra payments affect. Property taxes, homeowners insurance, and PMI are escrow items that do not change your payoff date, so they are excluded for clarity." } }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="../index.html">Money<span>Cal</span></a>
+    <nav class="nav">
+      <a href="../index.html#finance">Finance</a>
+      <a href="../index.html#insurance">Insurance</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="ad-slot lead">Advertisement</div>
+
+  <nav class="breadcrumb">
+    <a href="../index.html">Home</a><span>/</span>
+    <a href="../index.html#finance">Finance</a><span>/</span>
+    Mortgage Payoff Calculator
+  </nav>
+
+  <h1>🏠 Mortgage Payoff Calculator</h1>
+  <p class="lede">See how much sooner you'll own your home — and how much interest you'll save — by paying a little extra each month.</p>
+
+  <!-- ABOVE-THE-FOLD TOOL -->
+  <section class="tool" aria-label="Mortgage payoff calculator">
+    <div class="field">
+      <label for="balance">Mortgage balance <span class="hint">(amount still owed)</span></label>
+      <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="balance" value="300000" min="0" step="1000" inputmode="decimal"></div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label for="rate">Interest rate</label>
+        <div class="input-wrap"><input type="number" id="rate" value="6.5" min="0" step="0.05" inputmode="decimal"><span class="affix post">%</span></div>
+      </div>
+      <div class="field">
+        <label for="years">Years left on loan</label>
+        <input type="number" id="years" value="30" min="1" max="40" step="1" inputmode="numeric">
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label for="extra">Extra monthly payment</label>
+        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="extra" value="200" min="0" step="25" inputmode="decimal"></div>
+      </div>
+      <div class="field">
+        <label for="lump">One-time extra payment <span class="hint">(now)</span></label>
+        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="lump" value="0" min="0" step="500" inputmode="decimal"></div>
+      </div>
+    </div>
+    <button class="btn" id="calcBtn">Calculate savings</button>
+
+    <div class="result hidden" id="result" aria-live="polite">
+      <div id="warn" class="note" style="display:none;border-left-color:var(--warn);color:var(--warn)"></div>
+      <div class="headline-label">Interest you'll save</div>
+      <div class="headline" id="saved">$0</div>
+      <div class="stats">
+        <div class="stat"><div class="k">Pay off sooner by</div><div class="v good" id="timeSaved">—</div></div>
+        <div class="stat"><div class="k">New payoff time</div><div class="v" id="newTime">—</div></div>
+        <div class="stat"><div class="k">Monthly payment (P&amp;I)</div><div class="v" id="payment">—</div></div>
+        <div class="stat"><div class="k">Total interest with extra</div><div class="v" id="newInterest">—</div></div>
+      </div>
+      <p id="subnote" style="margin-top:.8rem;color:var(--text-soft);font-size:.9rem"></p>
+    </div>
+  </section>
+
+  <div class="ad-slot">Advertisement</div>
+
+  <section class="content">
+    <h2>What is a mortgage payoff calculator?</h2>
+    <p>A mortgage payoff calculator shows what happens when you pay more than your required monthly payment. Because a mortgage charges interest on your remaining balance, every extra dollar you put toward principal shrinks all the future interest that balance would have generated. This tool compares your normal schedule against an accelerated one, so you can see in concrete numbers how an extra $100 or $200 a month — or a one-time lump sum — moves up your payoff date and cuts your total interest.</p>
+
+    <h2>How to use this calculator</h2>
+    <ol>
+      <li><strong>Enter your current mortgage balance</strong>, interest rate, and the number of years left on the loan.</li>
+      <li><strong>Add an extra monthly payment</strong>, a one-time lump sum, or both — whatever you're considering putting toward principal.</li>
+      <li><strong>Press Calculate</strong> to see the interest you'll save, how much sooner you'll be mortgage-free, and your required principal-and-interest payment.</li>
+    </ol>
+
+    <h2>Example</h2>
+    <p>Take a <strong>$300,000</strong> balance at <strong>6.5%</strong> with <strong>30 years</strong> left. The required payment is about <strong>$1,896/month</strong>, and on the normal schedule you'd pay roughly <strong>$382,633</strong> in interest. Add just <strong>$200 a month</strong> toward principal and you'd be mortgage-free about <strong>6 years 11 months sooner</strong> — in 23 years instead of 30 — while saving roughly <strong>$104,900</strong> in interest. That's the payoff for $200 a month.</p>
+
+    <div class="note">This calculator models principal and interest only. It excludes property taxes, homeowners insurance, and PMI, since those escrow items don't change your payoff date. Tell your servicer to apply any extra payment to <em>principal</em>, and confirm your loan has no prepayment penalty.</div>
+
+    <h2>Frequently asked questions</h2>
+    <div class="faq">
+      <details><summary>How does paying extra on my mortgage help?</summary><p>Every extra dollar goes straight to principal, so you owe less and are charged less interest every future month. Because mortgages front-load interest, even small extra payments early on compound into large savings and a much earlier payoff.</p></details>
+      <details><summary>Is it better to pay extra monthly or one large lump sum?</summary><p>Both save interest. A lump sum today saves the most per dollar because it cuts the balance sooner, but a steady extra monthly payment is easier to budget and still saves tens of thousands over the life of a loan. You can model either or both here.</p></details>
+      <details><summary>Should I pay off my mortgage early or invest instead?</summary><p>It depends on your mortgage rate versus your expected investment return, taxes, and how much you value being debt-free. Paying down a 7% mortgage is a guaranteed 7% return; investing might beat that but carries risk. Many people do some of both.</p></details>
+      <details><summary>Will my lender charge a prepayment penalty?</summary><p>Most modern conventional mortgages have none, but some loans do — especially older or non-conforming ones. Check your loan documents or ask your servicer before making large extra payments.</p></details>
+      <details><summary>Does this include taxes and insurance?</summary><p>No — principal and interest only, which is the part extra payments affect. Property taxes, insurance, and PMI are escrow items that don't change your payoff date, so they're excluded for clarity.</p></details>
+    </div>
+
+    <div class="ad-slot">Advertisement</div>
+
+    <h2>Related tools</h2>
+    <ul class="related">
+      <li><a href="car-loan-calculator.html">Car Loan Calculator</a></li>
+      <li><a href="debt-payoff-calculator.html">Debt Payoff Calculator</a></li>
+      <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+      <li><a href="savings-goal-calculator.html">Savings Goal Calculator</a></li>
+    </ul>
+
+    <div class="ad-slot">Advertisement</div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">Home</a> · <a href="../about.html">About</a>
+    <p class="disclaimer">MoneyCal calculators are for educational and estimation purposes only and do not constitute financial advice. Verify important figures with a qualified professional.</p>
+  </div>
+</footer>
+
+<script>
+"use strict";
+var MAX_MONTHS = 1200;
+
+// Required principal & interest payment for the original schedule.
+function monthlyPayment(P, r, n) {
+  if (P <= 0) return 0;
+  if (r === 0) return P / n;
+  return P * r / (1 - Math.pow(1 + r, -n));
+}
+
+// Simulate paying down `balance` at payment `pay`/month (+ already-applied lump). Returns months + interest.
+function amortize(balance, r, pay) {
+  var months = 0, interest = 0;
+  while (balance > 0.005 && months < MAX_MONTHS) {
+    months++;
+    var intr = balance * r;
+    interest += intr;
+    var principal = pay - intr;
+    if (principal <= 0) { months = MAX_MONTHS; break; } // payment doesn't cover interest
+    balance -= principal;
+  }
+  // overshoot correction on final payment
+  if (balance < 0) interest += balance; // we counted a touch too much interest on the last partial month
+  return { months: months, interest: interest, reached: months < MAX_MONTHS };
+}
+
+function computePayoff({ balance, ratePct, years, extra, lump }) {
+  var r = ratePct / 100 / 12;
+  var n = Math.round(years * 12);
+  var payment = monthlyPayment(balance, r, n);
+
+  // Baseline: required payment, no extras.
+  var base = amortize(balance, r, payment);
+  // Accelerated: lump sum applied now, then payment + extra each month.
+  var startBal = Math.max(0, balance - lump);
+  var accel = amortize(startBal, r, payment + extra);
+
+  var interestSaved = base.interest - accel.interest;
+  var monthsSaved = base.months - accel.months;
+  return {
+    payment: payment,
+    baseInterest: base.interest,
+    baseMonths: base.months,
+    accelInterest: accel.interest,
+    accelMonths: accel.months,
+    interestSaved: interestSaved,
+    monthsSaved: monthsSaved,
+    reached: accel.reached
+  };
+}
+
+function fmtMoney(n) { return "$" + Math.round(n).toLocaleString("en-US"); }
+function fmtTime(months) {
+  if (months <= 0) return "0 mo";
+  var y = Math.floor(months / 12), m = months % 12, parts = [];
+  if (y) parts.push(y + (y === 1 ? " yr" : " yrs"));
+  if (m) parts.push(m + (m === 1 ? " mo" : " mos"));
+  return parts.join(" ");
+}
+
+function run() {
+  var data = {
+    balance: parseFloat(document.getElementById("balance").value) || 0,
+    ratePct: parseFloat(document.getElementById("rate").value) || 0,
+    years:   parseFloat(document.getElementById("years").value) || 0,
+    extra:   parseFloat(document.getElementById("extra").value) || 0,
+    lump:    parseFloat(document.getElementById("lump").value) || 0
+  };
+  var out = computePayoff(data);
+  var warnEl = document.getElementById("warn");
+  warnEl.style.display = "none";
+
+  document.getElementById("payment").textContent = fmtMoney(out.payment);
+  document.getElementById("saved").textContent = fmtMoney(Math.max(0, out.interestSaved));
+  document.getElementById("timeSaved").textContent = out.monthsSaved > 0 ? fmtTime(out.monthsSaved) : "—";
+  document.getElementById("newTime").textContent = fmtTime(out.accelMonths);
+  document.getElementById("newInterest").textContent = fmtMoney(out.accelInterest);
+
+  if (data.extra === 0 && data.lump === 0) {
+    document.getElementById("subnote").textContent =
+      "This is your normal schedule. Add an extra monthly or one-time payment above to see how much you'd save.";
+  } else {
+    document.getElementById("subnote").textContent =
+      "Without extra payments you'd pay " + fmtMoney(out.baseInterest) + " in interest over " + fmtTime(out.baseMonths) + ".";
+  }
+  document.getElementById("result").classList.remove("hidden");
+}
+
+document.getElementById("calcBtn").addEventListener("click", run);
+run();
+</script>
+</body>
+</html>

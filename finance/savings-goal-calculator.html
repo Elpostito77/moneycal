@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#1565c0">
+<title>Savings Goal Calculator — How Long & How Much to Save | MoneyCal</title>
+<meta name="description" content="Free savings goal calculator. Find out how long it takes to reach your goal, or how much to save each month to hit it by a target date, with interest factored in.">
+<link rel="canonical" href="https://moneycal.co/finance/savings-goal-calculator.html">
+<link rel="stylesheet" href="../css/main.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Savings Goal Calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://moneycal.co/" },
+    { "@type": "ListItem", "position": 2, "name": "Finance", "item": "https://moneycal.co/#finance" },
+    { "@type": "ListItem", "position": 3, "name": "Savings Goal Calculator" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How does a savings goal calculator work?", "acceptedAnswer": { "@type": "Answer", "text": "It projects your balance forward month by month. Starting from what you have today, it adds your regular contribution and any interest each month until you reach your target, or it works backward to find the monthly amount needed to hit your goal by a chosen date." } },
+    { "@type": "Question", "name": "Should I include interest on my savings?", "acceptedAnswer": { "@type": "Answer", "text": "If your money sits in a high-yield savings account, CD, or investment, yes. Enter the annual percentage yield. For a short-term goal in a checking account, you can leave the rate at zero and the calculator simply divides the remaining amount by your timeline." } },
+    { "@type": "Question", "name": "What is a realistic savings interest rate?", "acceptedAnswer": { "@type": "Answer", "text": "High-yield savings accounts and CDs commonly pay in the low single digits. Long-term stock market investments have historically averaged around 7 percent after inflation, but with year-to-year risk. Use a conservative number for goals you cannot afford to miss." } },
+    { "@type": "Question", "name": "How can I reach my savings goal faster?", "acceptedAnswer": { "@type": "Answer", "text": "Increase your monthly contribution, start with a larger initial deposit, move the money to a higher-yield account, or extend your timeline. Even small increases to the monthly amount compound into a meaningfully earlier finish date." } },
+    { "@type": "Question", "name": "Does it matter when in the month I deposit?", "acceptedAnswer": { "@type": "Answer", "text": "Only slightly. This calculator credits interest and then adds your contribution at the end of each month. Depositing earlier earns a tiny bit more interest, but for most goals the difference is negligible." } }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="../index.html">Money<span>Cal</span></a>
+    <nav class="nav">
+      <a href="../index.html#finance">Finance</a>
+      <a href="../index.html#insurance">Insurance</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="ad-slot lead">Advertisement</div>
+
+  <nav class="breadcrumb">
+    <a href="../index.html">Home</a><span>/</span>
+    <a href="../index.html#finance">Finance</a><span>/</span>
+    Savings Goal Calculator
+  </nav>
+
+  <h1>🎯 Savings Goal Calculator</h1>
+  <p class="lede">Find out how long it takes to reach your goal — or how much to set aside each month to hit it on time.</p>
+
+  <!-- ABOVE-THE-FOLD TOOL -->
+  <section class="tool" aria-label="Savings goal calculator">
+    <div class="seg" role="tablist">
+      <button id="modeTime" class="active" type="button">How long will it take?</button>
+      <button id="modeAmount" type="button">How much per month?</button>
+    </div>
+
+    <div class="field">
+      <label for="goal">Savings goal</label>
+      <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="goal" value="20000" min="0" step="500" inputmode="decimal"></div>
+    </div>
+    <div class="field">
+      <label for="current">Current savings</label>
+      <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="current" value="5000" min="0" step="100" inputmode="decimal"></div>
+    </div>
+
+    <!-- mode = time: ask for monthly contribution -->
+    <div class="field" id="rowContribution">
+      <label for="monthly">Monthly contribution</label>
+      <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="monthly" value="300" min="0" step="25" inputmode="decimal"></div>
+    </div>
+
+    <!-- mode = amount: ask for timeframe -->
+    <div class="field" id="rowTimeframe" style="display:none">
+      <label for="months">Reach it in</label>
+      <div class="input-wrap"><input type="number" id="months" value="36" min="1" step="1" inputmode="numeric"><span class="affix post">months</span></div>
+    </div>
+
+    <div class="field">
+      <label for="apy">Annual interest / return <span class="hint">(APY — use 0 for none)</span></label>
+      <div class="input-wrap"><input type="number" id="apy" value="4" min="0" step="0.1" inputmode="decimal"><span class="affix post">%</span></div>
+    </div>
+    <button class="btn" id="calcBtn">Calculate</button>
+
+    <div class="result hidden" id="result" aria-live="polite">
+      <div class="headline-label" id="headlineLabel">Time to reach your goal</div>
+      <div class="headline" id="headline">—</div>
+      <div class="stats">
+        <div class="stat"><div class="k" id="k1">Total you'll contribute</div><div class="v" id="v1">—</div></div>
+        <div class="stat"><div class="k">Interest earned</div><div class="v good" id="v2">—</div></div>
+      </div>
+      <p id="subnote" style="margin-top:.8rem;color:var(--text-soft);font-size:.9rem"></p>
+    </div>
+  </section>
+
+  <div class="ad-slot">Advertisement</div>
+
+  <section class="content">
+    <h2>What is a savings goal calculator?</h2>
+    <p>A savings goal calculator helps you plan for any specific target — an emergency fund, a house down payment, a vacation, a new car — by connecting three things: how much you need, how much you can save each month, and how long you have. Give it any two and it solves for the third. It also factors in the interest your savings earn along the way, so the projection reflects a real high-yield account or investment rather than just stuffing cash under a mattress.</p>
+
+    <h2>How to use this calculator</h2>
+    <ol>
+      <li><strong>Pick your mode</strong> — "How long will it take?" if you know your monthly amount, or "How much per month?" if you have a deadline.</li>
+      <li><strong>Enter your goal and current savings</strong>, then fill in either your monthly contribution or your target timeframe.</li>
+      <li><strong>Add an interest rate</strong> (your account's APY, or 0 for a plain checking account) and press Calculate.</li>
+    </ol>
+
+    <h2>Example</h2>
+    <p>You want to save <strong>$20,000</strong> for a house down payment. You already have <strong>$5,000</strong> set aside and can add <strong>$300 a month</strong> to a high-yield account paying <strong>4%</strong>. At that pace you'll hit your goal in about <strong>3 years 9 months</strong>, adding around $13,500 in monthly deposits on top of your initial $5,000 while interest covers the remaining ~$1,500. Switch to "How much per month?" with a 36-month deadline and you'll see you'd need about <strong>$376 a month</strong> instead.</p>
+
+    <div class="note">Investment returns are not guaranteed and vary year to year. For goals you can't afford to miss — like a near-term down payment — use a conservative rate or assume 0% and treat any interest as a bonus.</div>
+
+    <h2>Frequently asked questions</h2>
+    <div class="faq">
+      <details><summary>How does a savings goal calculator work?</summary><p>It projects your balance forward month by month from what you have today, adding your contribution and interest each month until you reach the target — or works backward to find the monthly amount needed to hit your goal by a chosen date.</p></details>
+      <details><summary>Should I include interest on my savings?</summary><p>If your money sits in a high-yield savings account, CD, or investment, yes — enter the APY. For a short-term goal in checking, leave the rate at zero and it simply divides the remaining amount by your timeline.</p></details>
+      <details><summary>What is a realistic savings interest rate?</summary><p>High-yield savings and CDs commonly pay low single digits. Long-term stock investments have historically averaged around 7% after inflation, but with risk. Use a conservative number for goals you can't miss.</p></details>
+      <details><summary>How can I reach my goal faster?</summary><p>Increase your monthly contribution, start with a larger deposit, move to a higher-yield account, or extend your timeline. Small increases to the monthly amount compound into a meaningfully earlier finish.</p></details>
+      <details><summary>Does it matter when in the month I deposit?</summary><p>Only slightly. This calculator credits interest and then adds your contribution at month end. Depositing earlier earns a tiny bit more, but the difference is usually negligible.</p></details>
+    </div>
+
+    <div class="ad-slot">Advertisement</div>
+
+    <h2>Related tools</h2>
+    <ul class="related">
+      <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+      <li><a href="fire-calculator.html">FIRE / Early Retirement Calculator</a></li>
+      <li><a href="debt-payoff-calculator.html">Debt Payoff Calculator</a></li>
+      <li><a href="car-loan-calculator.html">Car Loan Calculator</a></li>
+    </ul>
+
+    <div class="ad-slot">Advertisement</div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">Home</a> · <a href="../about.html">About</a>
+    <p class="disclaimer">MoneyCal calculators are for educational and estimation purposes only and do not constitute financial advice. Verify important figures with a qualified professional.</p>
+  </div>
+</footer>
+
+<script>
+"use strict";
+var MAX_MONTHS = 1200;
+
+// Mode A — months to reach goal given a monthly contribution.
+function monthsToGoal(goal, current, monthly, apyPct) {
+  var i = apyPct / 100 / 12;
+  var EPS = 0.01; // half-cent tolerance so this mode agrees with the "how much per month" mode
+  var balance = current, contributed = current, months = 0;
+  if (balance >= goal - EPS) return { months: 0, contributed: contributed, interest: balance - contributed, reached: true };
+  while (balance < goal - EPS && months < MAX_MONTHS) {
+    months++;
+    balance = balance * (1 + i) + monthly;
+    contributed += monthly;
+  }
+  return { months: months, contributed: contributed, interest: balance - contributed, reached: months < MAX_MONTHS };
+}
+
+// Mode B — monthly contribution needed to reach goal in n months.
+function monthlyForGoal(goal, current, months, apyPct) {
+  var i = apyPct / 100 / 12;
+  var grownCurrent, factor;
+  if (i === 0) {
+    grownCurrent = current;
+    factor = months;
+  } else {
+    var g = Math.pow(1 + i, months);
+    grownCurrent = current * g;
+    factor = (g - 1) / i; // future value annuity factor (end of period)
+  }
+  var needed = (goal - grownCurrent) / factor;
+  if (needed < 0) needed = 0; // current savings alone already gets there
+  var contributed = current + needed * months;
+  return { monthly: needed, contributed: contributed, interest: goal - contributed, alreadyThere: needed === 0 };
+}
+
+var mode = "time";
+function fmtMoney(n) { return "$" + Math.round(n).toLocaleString("en-US"); }
+function fmtTime(months) {
+  if (months === 0) return "Already there";
+  var y = Math.floor(months / 12), m = months % 12, parts = [];
+  if (y) parts.push(y + (y === 1 ? " yr" : " yrs"));
+  if (m) parts.push(m + (m === 1 ? " mo" : " mos"));
+  return parts.join(" ");
+}
+
+function run() {
+  var goal = parseFloat(document.getElementById("goal").value) || 0;
+  var current = parseFloat(document.getElementById("current").value) || 0;
+  var apy = parseFloat(document.getElementById("apy").value) || 0;
+  var res = document.getElementById("result");
+
+  if (mode === "time") {
+    var monthly = parseFloat(document.getElementById("monthly").value) || 0;
+    var out = monthsToGoal(goal, current, monthly, apy);
+    document.getElementById("headlineLabel").textContent = "Time to reach your goal";
+    document.getElementById("headline").textContent = out.reached ? fmtTime(out.months) : "Not at this rate";
+    document.getElementById("k1").textContent = "Total you'll contribute";
+    document.getElementById("v1").textContent = fmtMoney(out.contributed);
+    document.getElementById("v2").textContent = fmtMoney(out.interest);
+    document.getElementById("subnote").textContent = out.reached
+      ? (out.months === 0 ? "Your current savings already meet the goal." : "Reaching " + fmtMoney(goal) + " by saving " + fmtMoney(monthly) + "/month at " + apy + "% APY.")
+      : "Your goal isn't reached within 100 years at this contribution. Increase the monthly amount.";
+  } else {
+    var months = Math.max(1, parseInt(document.getElementById("months").value, 10) || 1);
+    var out2 = monthlyForGoal(goal, current, months, apy);
+    document.getElementById("headlineLabel").textContent = "Save this much per month";
+    document.getElementById("headline").textContent = fmtMoney(out2.monthly);
+    document.getElementById("k1").textContent = "Total you'll contribute";
+    document.getElementById("v1").textContent = fmtMoney(out2.contributed);
+    document.getElementById("v2").textContent = fmtMoney(Math.max(0, out2.interest));
+    document.getElementById("subnote").textContent = out2.alreadyThere
+      ? "Your current savings plus interest already reach the goal in " + months + " months — no monthly contribution needed."
+      : "To reach " + fmtMoney(goal) + " in " + fmtTime(months) + " at " + apy + "% APY.";
+  }
+  res.classList.remove("hidden");
+}
+
+function setMode(m) {
+  mode = m;
+  document.getElementById("modeTime").classList.toggle("active", m === "time");
+  document.getElementById("modeAmount").classList.toggle("active", m === "amount");
+  document.getElementById("rowContribution").style.display = m === "time" ? "" : "none";
+  document.getElementById("rowTimeframe").style.display = m === "amount" ? "" : "none";
+  run();
+}
+
+document.getElementById("modeTime").addEventListener("click", function () { setMode("time"); });
+document.getElementById("modeAmount").addEventListener("click", function () { setMode("amount"); });
+document.getElementById("calcBtn").addEventListener("click", run);
+run();
+</script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#1565c0">
+<title>FIRE Calculator — Years to Financial Independence & Early Retirement | MoneyCal</title>
+<meta name="description" content="Free FIRE calculator. Find your FIRE number, how many years until you can retire early, and the age you'll reach financial independence based on your savings rate.">
+<link rel="canonical" href="https://moneycal.co/finance/fire-calculator.html">
+<link rel="stylesheet" href="../css/main.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "FIRE Calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://moneycal.co/" },
+    { "@type": "ListItem", "position": 2, "name": "Finance", "item": "https://moneycal.co/#finance" },
+    { "@type": "ListItem", "position": 3, "name": "FIRE Calculator" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What is FIRE?", "acceptedAnswer": { "@type": "Answer", "text": "FIRE stands for Financial Independence, Retire Early. The idea is to save and invest a large share of your income until your portfolio is big enough that its returns cover your living expenses indefinitely, freeing you from needing a paycheck." } },
+    { "@type": "Question", "name": "What is my FIRE number?", "acceptedAnswer": { "@type": "Answer", "text": "Your FIRE number is the portfolio size that can sustainably fund your lifestyle. The common rule is your annual expenses divided by your safe withdrawal rate. At a 4 percent withdrawal rate that equals 25 times your annual expenses." } },
+    { "@type": "Question", "name": "What is the 4 percent rule?", "acceptedAnswer": { "@type": "Answer", "text": "The 4 percent rule comes from the Trinity Study and suggests you can withdraw about 4 percent of your portfolio in the first year of retirement, adjusting for inflation thereafter, with a high probability the money lasts 30+ years. Some early retirees use a more conservative 3 to 3.5 percent." } },
+    { "@type": "Question", "name": "Why does my savings rate matter so much?", "acceptedAnswer": { "@type": "Answer", "text": "Your savings rate is the single biggest lever in early retirement. A higher savings rate both grows your portfolio faster and lowers the FIRE number you need, because you live on less. Going from a 20 percent to a 50 percent savings rate can cut decades off your timeline." } },
+    { "@type": "Question", "name": "Should I use a real or nominal return?", "acceptedAnswer": { "@type": "Answer", "text": "Use a real return, meaning your expected investment return after subtracting inflation, around 5 to 7 percent for a stock-heavy portfolio historically. That keeps your FIRE number and result in today's dollars, which is easier to reason about." } }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="../index.html">Money<span>Cal</span></a>
+    <nav class="nav">
+      <a href="../index.html#finance">Finance</a>
+      <a href="../index.html#insurance">Insurance</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="ad-slot lead">Advertisement</div>
+
+  <nav class="breadcrumb">
+    <a href="../index.html">Home</a><span>/</span>
+    <a href="../index.html#finance">Finance</a><span>/</span>
+    FIRE Calculator
+  </nav>
+
+  <h1>🔥 FIRE Calculator</h1>
+  <p class="lede">Financial Independence, Retire Early — find your FIRE number and the age you could walk away from work.</p>
+
+  <!-- ABOVE-THE-FOLD TOOL -->
+  <section class="tool" aria-label="FIRE calculator">
+    <div class="row2">
+      <div class="field">
+        <label for="age">Current age</label>
+        <input type="number" id="age" value="30" min="16" max="90" step="1" inputmode="numeric">
+      </div>
+      <div class="field">
+        <label for="portfolio">Current investments</label>
+        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="portfolio" value="50000" min="0" step="1000" inputmode="decimal"></div>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label for="income">Annual take-home income</label>
+        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="income" value="90000" min="0" step="1000" inputmode="decimal"></div>
+      </div>
+      <div class="field">
+        <label for="expenses">Annual expenses</label>
+        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="expenses" value="50000" min="0" step="1000" inputmode="decimal"></div>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label for="ret">Real return <span class="hint">(after inflation)</span></label>
+        <div class="input-wrap"><input type="number" id="ret" value="5" min="0" step="0.1" inputmode="decimal"><span class="affix post">%</span></div>
+      </div>
+      <div class="field">
+        <label for="swr">Withdrawal rate</label>
+        <div class="input-wrap"><input type="number" id="swr" value="4" min="1" max="10" step="0.1" inputmode="decimal"><span class="affix post">%</span></div>
+      </div>
+    </div>
+    <button class="btn" id="calcBtn">Calculate</button>
+
+    <div class="result hidden" id="result" aria-live="polite">
+      <div id="warn" class="note" style="display:none;border-left-color:var(--warn);color:var(--warn)"></div>
+      <div class="headline-label">Years to financial independence</div>
+      <div class="headline" id="years">—</div>
+      <div class="stats">
+        <div class="stat"><div class="k">Your FIRE number</div><div class="v" id="fireNum">—</div></div>
+        <div class="stat"><div class="k">FI at age</div><div class="v" id="fiAge">—</div></div>
+        <div class="stat"><div class="k">Savings rate</div><div class="v" id="savingsRate">—</div></div>
+        <div class="stat"><div class="k">You save / year</div><div class="v" id="annualSave">—</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ad-slot">Advertisement</div>
+
+  <section class="content">
+    <h2>What is a FIRE calculator?</h2>
+    <p>A FIRE calculator estimates how long it will take to become financially independent — the point where your invested savings are large enough that their returns can cover your living expenses, so working becomes optional. It centers on two numbers: your <strong>FIRE number</strong> (the portfolio you're aiming for) and the <strong>years to reach it</strong> given how much you save and earn on your investments. The math reveals a surprising truth — your income matters less than the percentage of it you keep.</p>
+
+    <h2>How to use this calculator</h2>
+    <ol>
+      <li><strong>Enter your age and current investments</strong> — the money already working for you in retirement and brokerage accounts.</li>
+      <li><strong>Enter your annual take-home income and expenses.</strong> The gap between them is what you invest each year.</li>
+      <li><strong>Set a real return and withdrawal rate</strong> (5% and 4% are common defaults) and press Calculate to see your FIRE number, years to FI, and the age you'll get there.</li>
+    </ol>
+
+    <h2>Example</h2>
+    <p>A 30-year-old has <strong>$50,000</strong> invested, earns <strong>$90,000</strong> take-home, and spends <strong>$50,000</strong> a year — a 44% savings rate. With a 4% withdrawal rate, their FIRE number is $50,000 × 25 = <strong>$1.25 million</strong>. Investing the $40,000 annual surplus at a 5% real return, they reach financial independence in roughly <strong>18 years</strong>, at about <strong>age 48</strong>. Cut expenses to $40,000 and the timeline shrinks on both ends — they need less <em>and</em> save more.</p>
+
+    <div class="note">FIRE math assumes steady average returns and constant spending. Real markets are volatile, and sequence-of-returns risk early in retirement is a genuine concern. Treat this as a planning estimate, and many early retirees keep a cash buffer or use a withdrawal rate below 4%.</div>
+
+    <h2>Frequently asked questions</h2>
+    <div class="faq">
+      <details><summary>What is FIRE?</summary><p>FIRE stands for <strong>Financial Independence, Retire Early</strong>. You save and invest a large share of your income until your portfolio's returns can cover your living expenses indefinitely, freeing you from needing a paycheck.</p></details>
+      <details><summary>What is my FIRE number?</summary><p>It's the portfolio size that can sustainably fund your lifestyle — your annual expenses divided by your safe withdrawal rate. At a 4% withdrawal rate that's 25× your annual expenses.</p></details>
+      <details><summary>What is the 4% rule?</summary><p>From the Trinity Study: you can withdraw about 4% of your portfolio in year one of retirement, adjusting for inflation after, with a high chance the money lasts 30+ years. Conservative early retirees use 3–3.5%.</p></details>
+      <details><summary>Why does my savings rate matter so much?</summary><p>It's the biggest lever in early retirement. A higher savings rate grows your portfolio faster <em>and</em> lowers the FIRE number you need, because you live on less. Going from 20% to 50% can cut decades off the timeline.</p></details>
+      <details><summary>Should I use a real or nominal return?</summary><p>Use a <strong>real</strong> return — your expected return after inflation, around 5–7% for a stock-heavy portfolio historically. That keeps your FIRE number and result in today's dollars.</p></details>
+    </div>
+
+    <div class="ad-slot">Advertisement</div>
+
+    <h2>Related tools</h2>
+    <ul class="related">
+      <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+      <li><a href="savings-goal-calculator.html">Savings Goal Calculator</a></li>
+      <li><a href="debt-payoff-calculator.html">Debt Payoff Calculator</a></li>
+      <li><a href="car-loan-calculator.html">Car Loan Calculator</a></li>
+    </ul>
+
+    <div class="ad-slot">Advertisement</div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">Home</a> · <a href="../about.html">About</a>
+    <p class="disclaimer">MoneyCal calculators are for educational and estimation purposes only and do not constitute financial advice. Verify important figures with a qualified professional.</p>
+  </div>
+</footer>
+
+<script>
+"use strict";
+var MAX_MONTHS = 1200;
+
+function computeFire({ age, portfolio, income, expenses, retPct, swrPct }) {
+  var fireNumber = swrPct > 0 ? expenses / (swrPct / 100) : Infinity;
+  var annualSavings = income - expenses;
+  var savingsRate = income > 0 ? annualSavings / income : 0;
+  var monthlyReturn = Math.pow(1 + retPct / 100, 1 / 12) - 1;
+  var monthlyContribution = annualSavings / 12;
+
+  var balance = portfolio, months = 0, reached = true;
+  if (balance < fireNumber) {
+    if (annualSavings <= 0 && monthlyReturn <= 0) {
+      reached = false;
+    } else {
+      while (balance < fireNumber - 0.01 && months < MAX_MONTHS) {
+        months++;
+        balance = balance * (1 + monthlyReturn) + monthlyContribution;
+      }
+      if (months >= MAX_MONTHS) reached = false;
+    }
+  }
+  return {
+    fireNumber: fireNumber,
+    annualSavings: annualSavings,
+    savingsRate: savingsRate,
+    months: months,
+    years: months / 12,
+    ageAtFI: age + months / 12,
+    reached: reached
+  };
+}
+
+function fmtMoney(n) { return "$" + Math.round(n).toLocaleString("en-US"); }
+function fmtYears(years) {
+  if (years === 0) return "0 — already FI";
+  var y = Math.floor(years), m = Math.round((years - y) * 12);
+  if (m === 12) { y++; m = 0; }
+  return y + (y === 1 ? " yr" : " yrs") + (m ? " " + m + " mo" : "");
+}
+
+function run() {
+  var data = {
+    age:      parseFloat(document.getElementById("age").value) || 0,
+    portfolio:parseFloat(document.getElementById("portfolio").value) || 0,
+    income:   parseFloat(document.getElementById("income").value) || 0,
+    expenses: parseFloat(document.getElementById("expenses").value) || 0,
+    retPct:   parseFloat(document.getElementById("ret").value) || 0,
+    swrPct:   parseFloat(document.getElementById("swr").value) || 0
+  };
+  var out = computeFire(data);
+  var warnEl = document.getElementById("warn");
+
+  document.getElementById("fireNum").textContent = fmtMoney(out.fireNumber);
+  document.getElementById("savingsRate").textContent = Math.round(out.savingsRate * 100) + "%";
+  document.getElementById("annualSave").textContent = fmtMoney(out.annualSavings);
+
+  if (out.reached) {
+    warnEl.style.display = "none";
+    document.getElementById("years").textContent = fmtYears(out.years);
+    document.getElementById("fiAge").textContent = Math.round(out.ageAtFI);
+  } else {
+    warnEl.style.display = "block";
+    warnEl.textContent = data.expenses >= data.income
+      ? "⚠️ You're spending as much as or more than you earn — there's no surplus to invest. Lower expenses to start your FIRE timeline."
+      : "⚠️ Financial independence isn't reached within 100 years at these numbers. Increase savings or returns.";
+    document.getElementById("years").textContent = "Never";
+    document.getElementById("fiAge").textContent = "—";
+  }
+  document.getElementById("result").classList.remove("hidden");
+}
+
+document.getElementById("calcBtn").addEventListener("click", run);
+run();
+</script>
+</body>
+</html>
