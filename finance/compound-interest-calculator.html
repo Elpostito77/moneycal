@@ -83,12 +83,12 @@
   <section class="tool" aria-label="Compound interest calculator">
     <div class="field">
       <label for="principal">Starting amount <span class="hint">(initial principal)</span></label>
-      <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="principal" value="10000" min="0" step="100" inputmode="decimal"></div>
+      <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="principal" value="10000" min="0" max="100000000" step="100" inputmode="decimal"></div>
     </div>
     <div class="row2">
       <div class="field">
         <label for="contribution">Regular contribution</label>
-        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="contribution" value="500" min="0" step="50" inputmode="decimal"></div>
+        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="contribution" value="500" min="0" max="1000000" step="50" inputmode="decimal"></div>
       </div>
       <div class="field">
         <label for="contribFreq">Contribution frequency</label>
@@ -101,11 +101,11 @@
     <div class="row2">
       <div class="field">
         <label for="rate">Annual interest rate</label>
-        <div class="input-wrap"><input type="number" id="rate" value="7" min="0" step="0.1" inputmode="decimal"><span class="affix post">%</span></div>
+        <div class="input-wrap"><input type="number" id="rate" value="7" min="0" max="50" step="0.1" inputmode="decimal"><span class="affix post">%</span></div>
       </div>
       <div class="field">
         <label for="years">Years</label>
-        <input type="number" id="years" value="20" min="1" max="100" step="1" inputmode="numeric">
+        <input type="number" id="years" value="20" min="1" max="99" step="1" inputmode="numeric">
       </div>
     </div>
     <div class="field">
@@ -206,13 +206,20 @@ function fmt(n) {
   return "$" + Math.round(n).toLocaleString("en-US");
 }
 
+function clampField(id, lo, hi) {
+  var el = document.getElementById(id);
+  var v = Math.min(Math.max(parseFloat(el.value) || 0, lo), hi);
+  el.value = v;
+  return v;
+}
+
 function run() {
   var data = {
-    principal:    parseFloat(document.getElementById("principal").value) || 0,
-    contribution: parseFloat(document.getElementById("contribution").value) || 0,
+    principal:    clampField("principal", 0, 100000000),
+    contribution: clampField("contribution", 0, 1000000),
     contribFreq:  parseInt(document.getElementById("contribFreq").value, 10),
-    ratePct:      parseFloat(document.getElementById("rate").value) || 0,
-    years:        parseFloat(document.getElementById("years").value) || 0,
+    ratePct:      clampField("rate", 0, 50),
+    years:        clampField("years", 1, 99),
     compFreq:     parseInt(document.getElementById("compound").value, 10)
   };
   var out = computeCompound(data);

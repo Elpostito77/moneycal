@@ -86,7 +86,7 @@
 
     <div class="field" style="margin-top:1rem">
       <label for="extra">Extra payment per month <span class="hint">(on top of minimums)</span></label>
-      <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="extra" value="100" min="0" step="25" inputmode="decimal"></div>
+      <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="extra" value="100" min="0" max="25000" step="25" inputmode="decimal"></div>
     </div>
     <button class="btn" id="calcBtn">Compare strategies</button>
 
@@ -172,10 +172,10 @@ function rowHtml(d, i) {
   return '<div class="debt-row" data-i="' + i + '" style="border:1px solid var(--border);border-radius:10px;padding:1.1rem;margin-bottom:1rem">' +
     '<div class="field" style="margin-bottom:.5rem"><input type="text" class="d-name" placeholder="Debt name" value="' + d.name + '"></div>' +
     '<div class="row2">' +
-      '<div class="field" style="margin-bottom:.5rem"><label>Balance</label><div class="input-wrap"><span class="affix pre">$</span><input type="number" class="d-bal" value="' + d.balance + '" min="0" step="100" inputmode="decimal"></div></div>' +
-      '<div class="field" style="margin-bottom:.5rem"><label>APR</label><div class="input-wrap"><input type="number" class="d-apr" value="' + d.apr + '" min="0" step="0.1" inputmode="decimal"><span class="affix post">%</span></div></div>' +
+      '<div class="field" style="margin-bottom:.5rem"><label>Balance</label><div class="input-wrap"><span class="affix pre">$</span><input type="number" class="d-bal" value="' + d.balance + '" min="0" max="500000" step="100" inputmode="decimal"></div></div>' +
+      '<div class="field" style="margin-bottom:.5rem"><label>APR</label><div class="input-wrap"><input type="number" class="d-apr" value="' + d.apr + '" min="0" max="100" step="0.1" inputmode="decimal"><span class="affix post">%</span></div></div>' +
     '</div>' +
-    '<div class="field" style="margin-bottom:0"><label>Minimum monthly payment</label><div class="input-wrap"><span class="affix pre">$</span><input type="number" class="d-min" value="' + d.min + '" min="0" step="10" inputmode="decimal"></div>' +
+    '<div class="field" style="margin-bottom:0"><label>Minimum monthly payment</label><div class="input-wrap"><span class="affix pre">$</span><input type="number" class="d-min" value="' + d.min + '" min="0" max="25000" step="10" inputmode="decimal"></div>' +
     (i > 0 ? '<button type="button" class="btn secondary remove" style="margin-top:.5rem">Remove</button>' : '') +
     '</div></div>';
 }
@@ -189,16 +189,25 @@ function renderRows(debts) {
   });
 }
 
+function clampEl(el, lo, hi) {
+  var v = Math.min(Math.max(parseFloat(el.value) || 0, lo), hi);
+  el.value = v;
+  return v;
+}
+
 function readDebts() {
   var debts = [];
   document.querySelectorAll(".debt-row").forEach(function (row) {
-    var bal = parseFloat(row.querySelector(".d-bal").value) || 0;
+    var balEl = row.querySelector(".d-bal");
+    var aprEl = row.querySelector(".d-apr");
+    var minEl = row.querySelector(".d-min");
+    var bal = clampEl(balEl, 0, 500000);
     if (bal <= 0) return;
     debts.push({
       name: row.querySelector(".d-name").value || "Debt",
       balance: bal,
-      apr: parseFloat(row.querySelector(".d-apr").value) || 0,
-      min: parseFloat(row.querySelector(".d-min").value) || 0
+      apr: clampEl(aprEl, 0, 100),
+      min: clampEl(minEl, 0, 25000)
     });
   });
   return debts;
@@ -255,7 +264,7 @@ function run() {
   var debts = readDebts();
   var resultEl = document.getElementById("result");
   if (!debts.length) { resultEl.classList.add("hidden"); return; }
-  var extra = parseFloat(document.getElementById("extra").value) || 0;
+  var extra = clampEl(document.getElementById("extra"), 0, 25000);
 
   var snow = simulate(debts, extra, "snowball");
   var ava  = simulate(debts, extra, "avalanche");

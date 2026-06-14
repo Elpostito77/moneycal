@@ -83,12 +83,12 @@
   <section class="tool" aria-label="Mortgage payoff calculator">
     <div class="field">
       <label for="balance">Mortgage balance <span class="hint">(amount still owed)</span></label>
-      <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="balance" value="300000" min="0" step="1000" inputmode="decimal"></div>
+      <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="balance" value="300000" min="0" max="10000000" step="1000" inputmode="decimal"></div>
     </div>
     <div class="row2">
       <div class="field">
         <label for="rate">Interest rate</label>
-        <div class="input-wrap"><input type="number" id="rate" value="6.5" min="0" step="0.05" inputmode="decimal"><span class="affix post">%</span></div>
+        <div class="input-wrap"><input type="number" id="rate" value="6.5" min="0" max="30" step="0.05" inputmode="decimal"><span class="affix post">%</span></div>
       </div>
       <div class="field">
         <label for="years">Years left on loan</label>
@@ -98,11 +98,11 @@
     <div class="row2">
       <div class="field">
         <label for="extra">Extra monthly payment</label>
-        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="extra" value="200" min="0" step="25" inputmode="decimal"></div>
+        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="extra" value="200" min="0" max="50000" step="25" inputmode="decimal"></div>
       </div>
       <div class="field">
         <label for="lump">One-time extra payment <span class="hint">(now)</span></label>
-        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="lump" value="0" min="0" step="500" inputmode="decimal"></div>
+        <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="lump" value="0" min="0" max="10000000" step="500" inputmode="decimal"></div>
       </div>
     </div>
     <button class="btn" id="calcBtn">Calculate savings</button>
@@ -230,13 +230,20 @@ function fmtTime(months) {
   return parts.join(" ");
 }
 
+function clampField(id, lo, hi) {
+  var el = document.getElementById(id);
+  var v = Math.min(Math.max(parseFloat(el.value) || 0, lo), hi);
+  el.value = v;
+  return v;
+}
+
 function run() {
   var data = {
-    balance: parseFloat(document.getElementById("balance").value) || 0,
-    ratePct: parseFloat(document.getElementById("rate").value) || 0,
-    years:   parseFloat(document.getElementById("years").value) || 0,
-    extra:   parseFloat(document.getElementById("extra").value) || 0,
-    lump:    parseFloat(document.getElementById("lump").value) || 0
+    balance: clampField("balance", 0, 10000000),
+    ratePct: clampField("rate", 0, 30),
+    years:   clampField("years", 1, 40),
+    extra:   clampField("extra", 0, 50000),
+    lump:    clampField("lump", 0, 10000000)
   };
   var out = computePayoff(data);
   var warnEl = document.getElementById("warn");
