@@ -12,6 +12,11 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://moneycal.co/privacy.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
     <loc>https://moneycal.co/finance/compound-interest-calculator.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
