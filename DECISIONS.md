@@ -127,6 +127,8 @@ Slots contain the text "Advertisement" as placeholder until AdSense is configure
 | 401(k) | 🏦 |
 | Rent vs. Buy | 🔑 |
 | Net Worth | 📊 |
+| Emergency Fund | 🛟 |
+| Savings Rate | 💰 |
 
 ---
 

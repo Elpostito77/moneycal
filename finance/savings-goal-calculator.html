@@ -115,7 +115,7 @@
     <!-- mode = amount: ask for timeframe -->
     <div class="field" id="rowTimeframe" style="display:none">
       <label for="months">Reach it in</label>
-      <div class="input-wrap"><input type="number" id="months" value="36" min="1" max="1200" step="1" inputmode="numeric"><span class="affix post">months</span></div>
+      <div class="input-wrap"><input type="number" id="months" value="36" min="1" max="600" step="1" inputmode="numeric"><span class="affix post">months</span></div>
     </div>
 
     <div class="field">
@@ -276,6 +276,19 @@ function setMode(m) {
   document.getElementById("rowTimeframe").style.display = m === "amount" ? "" : "none";
   run();
 }
+
+(function() {
+  document.querySelectorAll('input[type="number"]').forEach(function(el) {
+    el.addEventListener('input', function() {
+      var v = parseFloat(el.value);
+      if (isNaN(v)) return;
+      var mx = parseFloat(el.getAttribute('max'));
+      var mn = parseFloat(el.getAttribute('min')) || 0;
+      if (!isNaN(mx) && v > mx) el.value = mx;
+      if (!isNaN(mn) && v < mn) el.value = mn;
+    });
+  });
+})();
 
 document.getElementById("modeTime").addEventListener("click", function () { setMode("time"); });
 document.getElementById("modeAmount").addEventListener("click", function () { setMode("amount"); });

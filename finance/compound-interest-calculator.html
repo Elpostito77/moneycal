@@ -116,7 +116,7 @@
       </div>
       <div class="field">
         <label for="years">Years</label>
-        <input type="number" id="years" value="20" min="1" max="99" step="1" inputmode="numeric">
+        <input type="number" id="years" value="20" min="1" max="50" step="1" inputmode="numeric">
       </div>
     </div>
     <div class="field">
@@ -240,8 +240,21 @@ function run() {
   document.getElementById("result").classList.remove("hidden");
 }
 
+(function() {
+  document.querySelectorAll('input[type="number"]').forEach(function(el) {
+    el.addEventListener('input', function() {
+      var v = parseFloat(el.value);
+      if (isNaN(v)) return;
+      var mx = parseFloat(el.getAttribute('max'));
+      var mn = parseFloat(el.getAttribute('min')) || 0;
+      if (!isNaN(mx) && v > mx) el.value = mx;
+      if (!isNaN(mn) && v < mn) el.value = mn;
+    });
+  });
+})();
+
 document.getElementById("calcBtn").addEventListener("click", run);
-run(); // show a result on load
+run();
 </script>
 </body>
 </html>

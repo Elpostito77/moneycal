@@ -265,6 +265,19 @@ function run() {
   document.getElementById("result").classList.remove("hidden");
 }
 
+(function() {
+  document.querySelectorAll('input[type="number"]').forEach(function(el) {
+    el.addEventListener('input', function() {
+      var v = parseFloat(el.value);
+      if (isNaN(v)) return;
+      var mx = parseFloat(el.getAttribute('max'));
+      var mn = parseFloat(el.getAttribute('min')) || 0;
+      if (!isNaN(mx) && v > mx) el.value = mx;
+      if (!isNaN(mn) && v < mn) el.value = mn;
+    });
+  });
+})();
+
 document.getElementById("calcBtn").addEventListener("click", run);
 run();
 </script>

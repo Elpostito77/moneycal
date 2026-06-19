@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0LKD1BP2HB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0LKD1BP2HB');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#1565c0">
+<title>Savings Rate Calculator — What Percentage Are You Saving? | MoneyCal</title>
+<meta name="description" content="Free savings rate calculator. See what percentage of your income you're saving, how it compares to benchmarks, and how raising your rate changes your retirement timeline.">
+<link rel="canonical" href="https://moneycal.co/finance/savings-rate-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://moneycal.co/finance/savings-rate-calculator.html">
+<meta property="og:title" content="Savings Rate Calculator — What Percentage Are You Saving? | MoneyCal">
+<meta property="og:description" content="Free savings rate calculator. See what percentage of your income you're saving, how it compares to benchmarks, and how raising your rate changes your retirement timeline.">
+<meta property="og:image" content="https://moneycal.co/og-image.png">
+<meta property="og:site_name" content="MoneyCal">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Savings Rate Calculator — What Percentage Are You Saving? | MoneyCal">
+<meta name="twitter:description" content="Free savings rate calculator. See what percentage of your income you're saving, how it compares to benchmarks, and how raising your rate changes your retirement timeline.">
+<meta name="twitter:image" content="https://moneycal.co/og-image.png">
+<link rel="stylesheet" href="../css/main.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Savings Rate Calculator",
+  "url": "https://moneycal.co/finance/savings-rate-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://moneycal.co/" },
+    { "@type": "ListItem", "position": 2, "name": "Finance", "item": "https://moneycal.co/#finance" },
+    { "@type": "ListItem", "position": 3, "name": "Savings Rate Calculator" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What is a good savings rate?", "acceptedAnswer": { "@type": "Answer", "text": "A common benchmark is 20 percent of gross income, based on the 50/30/20 budgeting rule. The average American personal savings rate has fluctuated between 3 and 8 percent in recent years. FIRE enthusiasts often target 50 percent or higher to retire decades early." } },
+    { "@type": "Question", "name": "Should I calculate savings rate from gross or net income?", "acceptedAnswer": { "@type": "Answer", "text": "Either works as long as you are consistent. This calculator uses gross income because pre-tax retirement contributions like 401k deferrals are savings too. If you prefer net income, enter your take-home pay and exclude pre-tax contributions from the savings fields." } },
+    { "@type": "Question", "name": "Does employer 401k match count toward my savings rate?", "acceptedAnswer": { "@type": "Answer", "text": "Many financial planners include employer match in total savings rate since it is money going toward your future. This calculator includes it as a separate field so you can see your rate with and without the match." } },
+    { "@type": "Question", "name": "How does savings rate affect retirement age?", "acceptedAnswer": { "@type": "Answer", "text": "Savings rate is the single biggest lever for retirement timing. At 10 percent it takes roughly 40 years of working to retire. At 25 percent it drops to about 30 years. At 50 percent it can be under 17 years. The math is powerful because a higher rate both adds more to savings and reduces the lifestyle you need to fund in retirement." } },
+    { "@type": "Question", "name": "How can I increase my savings rate?", "acceptedAnswer": { "@type": "Answer", "text": "Start by tracking where your money goes for one month. Cut or reduce the three largest discretionary expenses. Automate transfers to savings on payday. Increase your rate by one percentage point every few months so the adjustment feels gradual. Raises and bonuses are the easiest time to bump the rate." } }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="../index.html">Money<span>Cal</span></a>
+    <nav class="nav">
+      <a href="../index.html#finance">Finance</a>
+      <a href="../index.html#insurance">Insurance</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="ad-slot lead">Advertisement</div>
+
+  <nav class="breadcrumb">
+    <a href="../index.html">Home</a><span>/</span>
+    <a href="../index.html#finance">Finance</a><span>/</span>
+    Savings Rate Calculator
+  </nav>
+
+  <h1>💰 Savings Rate Calculator</h1>
+  <p class="lede">See what percentage of your income you're saving — and how changing it affects your future.</p>
+
+  <section class="tool" aria-label="Savings rate calculator">
+    <div class="field">
+      <label for="income">Gross annual income</label>
+      <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="income" value="75000" min="0" max="10000000" step="1000" inputmode="decimal"></div>
+    </div>
+    <div class="field">
+      <label for="retirement">Annual retirement contributions <span class="hint">(401k, IRA, etc.)</span></label>
+      <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="retirement" value="6000" min="0" max="1000000" step="500" inputmode="decimal"></div>
+    </div>
+    <div class="field">
+      <label for="match">Employer match <span class="hint">(annual total, not percentage)</span></label>
+      <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="match" value="3000" min="0" max="1000000" step="500" inputmode="decimal"></div>
+    </div>
+    <div class="field">
+      <label for="other">Other annual savings <span class="hint">(brokerage, HYSA, HSA, etc.)</span></label>
+      <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="other" value="3600" min="0" max="1000000" step="100" inputmode="decimal"></div>
+    </div>
+    <button class="btn" id="calcBtn">Calculate</button>
+
+    <div class="result hidden" id="result" aria-live="polite">
+      <div class="headline-label">Your savings rate</div>
+      <div class="headline" id="headline">—</div>
+      <div class="stats">
+        <div class="stat"><div class="k">Total annual savings</div><div class="v" id="v1">—</div></div>
+        <div class="stat"><div class="k">Monthly savings</div><div class="v" id="v2">—</div></div>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="k">Rate without employer match</div><div class="v" id="v3">—</div></div>
+        <div class="stat"><div class="k">Annual spending (est.)</div><div class="v" id="v4">—</div></div>
+      </div>
+
+      <div id="benchWrap" style="margin-top:1.2rem">
+        <div style="font-size:.85rem;color:var(--text-soft);margin-bottom:.5rem;font-weight:600">How you compare</div>
+        <div id="benchmarks"></div>
+      </div>
+
+      <p id="subnote" style="margin-top:.8rem;color:var(--text-soft);font-size:.9rem"></p>
+    </div>
+  </section>
+
+  <div class="ad-slot">Advertisement</div>
+
+  <section class="content">
+    <h2>What is a savings rate?</h2>
+    <p>Your savings rate is the percentage of your income that goes toward savings and investments rather than spending. It is the single most important number in personal finance because it determines both how fast your wealth grows and how much income you need to replace in retirement. A higher savings rate means you need less money to retire (because your lifestyle costs less) and you accumulate it faster (because more goes in each month). This double effect is why small changes to the rate have an outsized impact on your financial timeline.</p>
+
+    <h2>How to use this calculator</h2>
+    <ol>
+      <li><strong>Enter your gross annual income</strong> — total pre-tax pay including bonuses and side income.</li>
+      <li><strong>Enter your retirement contributions</strong> — what you personally put into 401(k), 403(b), IRA, or other retirement accounts each year.</li>
+      <li><strong>Add your employer match</strong> — the annual dollar amount your company contributes (not the percentage). Check your pay stub or benefits portal.</li>
+      <li><strong>Add other savings</strong> — anything else going into savings accounts, brokerage accounts, HSA, real estate equity payments above the minimum, etc.</li>
+    </ol>
+
+    <h2>Example</h2>
+    <p>You earn <strong>$75,000/year</strong>, contribute <strong>$6,000/year</strong> to your 401(k), get a <strong>$3,000 employer match</strong>, and put another <strong>$3,600/year</strong> ($300/month) into a high-yield savings account. Your total savings is <strong>$12,600/year</strong> — a <strong>16.8%</strong> savings rate. Without the employer match, your personal rate is <strong>12.8%</strong>. Bumping your 401(k) contribution by $2,000 to capture a larger match could push you above the 20% benchmark with minimal lifestyle change.</p>
+
+    <div class="note">This calculator estimates your savings rate from the inputs provided. It does not account for taxes, which vary by state, filing status, and deductions. For a precise after-tax rate, use your take-home pay and exclude pre-tax contributions from the savings fields.</div>
+
+    <h2>Frequently asked questions</h2>
+    <div class="faq">
+      <details><summary>What is a good savings rate?</summary><p>A common benchmark is 20% of gross income (the 50/30/20 rule). The average American personal savings rate has fluctuated between 3-8% in recent years. FIRE enthusiasts often target 50%+ to retire decades early.</p></details>
+      <details><summary>Should I calculate from gross or net income?</summary><p>Either works if you're consistent. This calculator uses gross because pre-tax retirement contributions (401k deferrals) are savings too. If you prefer net, enter take-home pay and exclude pre-tax contributions from the savings fields.</p></details>
+      <details><summary>Does employer match count toward my savings rate?</summary><p>Many planners include it since it's money going toward your future. This calculator shows both rates — with and without match — so you can see the difference.</p></details>
+      <details><summary>How does savings rate affect retirement age?</summary><p>It's the single biggest lever. At 10% it takes ~40 years to retire. At 25%, ~30 years. At 50%, under 17 years. A higher rate both adds more savings and reduces the lifestyle you need to fund.</p></details>
+      <details><summary>How can I increase my savings rate?</summary><p>Track spending for one month. Cut the three biggest discretionary expenses. Automate transfers on payday. Increase by one percentage point every few months. Raises and bonuses are the easiest time to bump it.</p></details>
+    </div>
+
+    <div class="ad-slot">Advertisement</div>
+
+    <h2>Related tools</h2>
+    <ul class="related">
+      <li><a href="fire-calculator.html">FIRE / Early Retirement Calculator</a></li>
+      <li><a href="401k-calculator.html">401(k) Calculator</a></li>
+      <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+      <li><a href="emergency-fund-calculator.html">Emergency Fund Calculator</a></li>
+    </ul>
+
+    <div class="ad-slot">Advertisement</div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">Home</a> · <a href="../about.html">About</a> · <a href="../privacy.html">Privacy</a>
+    <p class="disclaimer">MoneyCal calculators are for educational and estimation purposes only and do not constitute financial advice. Verify important figures with a qualified professional.</p>
+  </div>
+</footer>
+
+<script>
+"use strict";
+
+function fmtMoney(n) { return "$" + Math.round(n).toLocaleString("en-US"); }
+function fmtPct(n) { return n.toFixed(1) + "%"; }
+
+var BENCHMARKS = [
+  { label: "U.S. average", pct: 5 },
+  { label: "50/30/20 rule", pct: 20 },
+  { label: "FIRE target", pct: 50 }
+];
+
+function renderBenchmarks(userPct) {
+  var wrap = document.getElementById("benchmarks");
+  wrap.innerHTML = "";
+  BENCHMARKS.forEach(function(b) {
+    var row = document.createElement("div");
+    row.style.cssText = "display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:.85rem";
+
+    var barBg = document.createElement("div");
+    barBg.style.cssText = "flex:1;height:8px;background:var(--bg-card);border-radius:4px;overflow:hidden;border:1px solid var(--border);position:relative";
+
+    var fill = document.createElement("div");
+    var w = Math.min(100, (b.pct / Math.max(userPct, 60)) * 100);
+    fill.style.cssText = "height:100%;border-radius:4px;background:var(--border);width:" + Math.round(w) + "%";
+    barBg.appendChild(fill);
+
+    var userMark = document.createElement("div");
+    var uW = Math.min(100, (userPct / Math.max(userPct, 60)) * 100);
+    userMark.style.cssText = "position:absolute;top:-2px;height:12px;width:3px;background:var(--accent);border-radius:2px;left:" + Math.round(uW) + "%";
+    barBg.appendChild(userMark);
+
+    var lbl = document.createElement("span");
+    lbl.style.cssText = "min-width:100px;color:var(--text-soft)";
+    lbl.textContent = b.label + " (" + b.pct + "%)";
+
+    row.appendChild(lbl);
+    row.appendChild(barBg);
+    wrap.appendChild(row);
+  });
+}
+
+function run() {
+  var income = Math.min(Math.max(parseFloat(document.getElementById("income").value) || 0, 0), 10000000);
+  var retirement = Math.min(Math.max(parseFloat(document.getElementById("retirement").value) || 0, 0), 1000000);
+  var match = Math.min(Math.max(parseFloat(document.getElementById("match").value) || 0, 0), 1000000);
+  var other = Math.min(Math.max(parseFloat(document.getElementById("other").value) || 0, 0), 1000000);
+
+  var totalSavings = retirement + match + other;
+  var personalSavings = retirement + other;
+  var rate = income > 0 ? (totalSavings / income) * 100 : 0;
+  var personalRate = income > 0 ? (personalSavings / income) * 100 : 0;
+  var spending = Math.max(0, income - totalSavings);
+
+  document.getElementById("headline").textContent = fmtPct(rate);
+  document.getElementById("v1").textContent = fmtMoney(totalSavings);
+  document.getElementById("v2").textContent = fmtMoney(totalSavings / 12);
+  document.getElementById("v3").textContent = fmtPct(personalRate);
+  document.getElementById("v4").textContent = fmtMoney(spending);
+
+  renderBenchmarks(rate);
+
+  var note = document.getElementById("subnote");
+  if (income === 0) {
+    note.textContent = "Enter your income to see your savings rate.";
+  } else if (rate >= 50) {
+    note.textContent = "Exceptional. At this rate you could reach financial independence in under 17 years of working.";
+  } else if (rate >= 20) {
+    note.textContent = "You're meeting or exceeding the 50/30/20 benchmark. Strong position for long-term wealth building.";
+  } else if (rate >= 10) {
+    note.textContent = "Solid start. Increasing by a few percentage points — even $100/month more — compounds significantly over time.";
+  } else if (rate > 0) {
+    note.textContent = "Below the U.S. average of ~5%. Look for one expense to cut and one automatic transfer to set up — small wins build momentum.";
+  } else {
+    note.textContent = "You're not saving anything right now. Even $50/month is a start. Automate it and build from there.";
+  }
+
+  document.getElementById("result").classList.remove("hidden");
+}
+
+// Input clamping
+(function() {
+  document.querySelectorAll('input[type="number"]').forEach(function(el) {
+    el.addEventListener('input', function() {
+      var v = parseFloat(el.value);
+      if (isNaN(v)) return;
+      var mx = parseFloat(el.getAttribute('max'));
+      var mn = parseFloat(el.getAttribute('min')) || 0;
+      if (!isNaN(mx) && v > mx) el.value = mx;
+      if (!isNaN(mn) && v < mn) el.value = mn;
+    });
+  });
+})();
+
+document.getElementById("calcBtn").addEventListener("click", run);
+run();
+</script>
+</body>
+</html>

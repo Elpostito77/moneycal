@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0LKD1BP2HB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0LKD1BP2HB');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#1565c0">
+<title>Emergency Fund Calculator — How Much Do You Need? | MoneyCal</title>
+<meta name="description" content="Free emergency fund calculator. Find your target based on monthly expenses, see how long it takes to build, and track your progress toward 3-6 months of coverage.">
+<link rel="canonical" href="https://moneycal.co/finance/emergency-fund-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://moneycal.co/finance/emergency-fund-calculator.html">
+<meta property="og:title" content="Emergency Fund Calculator — How Much Do You Need? | MoneyCal">
+<meta property="og:description" content="Free emergency fund calculator. Find your target based on monthly expenses, see how long it takes to build, and track your progress toward 3-6 months of coverage.">
+<meta property="og:image" content="https://moneycal.co/og-image.png">
+<meta property="og:site_name" content="MoneyCal">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Emergency Fund Calculator — How Much Do You Need? | MoneyCal">
+<meta name="twitter:description" content="Free emergency fund calculator. Find your target based on monthly expenses, see how long it takes to build, and track your progress toward 3-6 months of coverage.">
+<meta name="twitter:image" content="https://moneycal.co/og-image.png">
+<link rel="stylesheet" href="../css/main.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Emergency Fund Calculator",
+  "url": "https://moneycal.co/finance/emergency-fund-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://moneycal.co/" },
+    { "@type": "ListItem", "position": 2, "name": "Finance", "item": "https://moneycal.co/#finance" },
+    { "@type": "ListItem", "position": 3, "name": "Emergency Fund Calculator" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How much should I have in an emergency fund?", "acceptedAnswer": { "@type": "Answer", "text": "Most financial advisors recommend 3 to 6 months of essential expenses. Three months works for dual-income households with stable jobs; six months or more is better for single-income earners, freelancers, or anyone in a volatile industry." } },
+    { "@type": "Question", "name": "What counts as a monthly expense for an emergency fund?", "acceptedAnswer": { "@type": "Answer", "text": "Focus on essential expenses you cannot skip: rent or mortgage, utilities, groceries, insurance premiums, minimum debt payments, transportation, and prescriptions. Leave out discretionary spending like dining out or subscriptions you could cancel in a crisis." } },
+    { "@type": "Question", "name": "Where should I keep my emergency fund?", "acceptedAnswer": { "@type": "Answer", "text": "A high-yield savings account is ideal. It earns interest while keeping the money liquid and FDIC-insured. Avoid investing your emergency fund in the stock market since you may need it during a market downturn." } },
+    { "@type": "Question", "name": "Should I pay off debt or build an emergency fund first?", "acceptedAnswer": { "@type": "Answer", "text": "Start with a small emergency buffer of around one thousand dollars to avoid going deeper into debt for unexpected expenses. Then focus on high-interest debt. Once high-interest debt is gone, build the fund to 3-6 months." } },
+    { "@type": "Question", "name": "How do I build an emergency fund on a tight budget?", "acceptedAnswer": { "@type": "Answer", "text": "Start with whatever you can afford, even twenty-five or fifty dollars a month. Automate the transfer so it happens without thinking. Every raise, bonus, or tax refund is an opportunity to add a lump sum. The calculator shows that even small amounts add up over time." } }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="../index.html">Money<span>Cal</span></a>
+    <nav class="nav">
+      <a href="../index.html#finance">Finance</a>
+      <a href="../index.html#insurance">Insurance</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="ad-slot lead">Advertisement</div>
+
+  <nav class="breadcrumb">
+    <a href="../index.html">Home</a><span>/</span>
+    <a href="../index.html#finance">Finance</a><span>/</span>
+    Emergency Fund Calculator
+  </nav>
+
+  <h1>🛟 Emergency Fund Calculator</h1>
+  <p class="lede">Find out how much you need in your emergency fund and how long it will take to build it.</p>
+
+  <section class="tool" aria-label="Emergency fund calculator">
+    <div class="field">
+      <label for="expenses">Monthly essential expenses</label>
+      <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="expenses" value="3500" min="0" max="100000" step="100" inputmode="decimal"></div>
+    </div>
+    <div class="field">
+      <label for="months">Months of coverage</label>
+      <div class="input-wrap"><input type="number" id="months" value="6" min="1" max="24" step="1" inputmode="numeric"><span class="affix post">months</span></div>
+    </div>
+    <div class="field">
+      <label for="saved">Amount already saved</label>
+      <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="saved" value="2000" min="0" max="10000000" step="100" inputmode="decimal"></div>
+    </div>
+    <div class="field">
+      <label for="contribution">Monthly contribution toward fund</label>
+      <div class="input-wrap"><span class="affix pre">$</span><input type="number" id="contribution" value="300" min="0" max="1000000" step="25" inputmode="decimal"></div>
+    </div>
+    <div class="field">
+      <label for="apy">Savings account APY <span class="hint">(use 0 if none)</span></label>
+      <div class="input-wrap"><input type="number" id="apy" value="4" min="0" max="50" step="0.1" inputmode="decimal"><span class="affix post">%</span></div>
+    </div>
+    <button class="btn" id="calcBtn">Calculate</button>
+
+    <div class="result hidden" id="result" aria-live="polite">
+      <div class="headline-label">Your emergency fund target</div>
+      <div class="headline" id="headline">—</div>
+      <div class="stats">
+        <div class="stat"><div class="k">Currently saved</div><div class="v" id="v1">—</div></div>
+        <div class="stat"><div class="k">Still needed</div><div class="v" id="v2">—</div></div>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="k">Time to fully funded</div><div class="v" id="v3">—</div></div>
+        <div class="stat"><div class="k">Interest earned along the way</div><div class="v good" id="v4">—</div></div>
+      </div>
+
+      <div id="progressWrap" style="margin-top:1rem">
+        <div style="display:flex;justify-content:space-between;font-size:.85rem;color:var(--text-soft);margin-bottom:.3rem">
+          <span id="pctLabel">0% funded</span>
+          <span id="pctRemain"></span>
+        </div>
+        <div style="background:var(--bg-card);border-radius:6px;height:14px;overflow:hidden;border:1px solid var(--border)">
+          <div id="bar" style="height:100%;background:var(--accent);border-radius:6px;transition:width .3s"></div>
+        </div>
+      </div>
+      <p id="subnote" style="margin-top:.8rem;color:var(--text-soft);font-size:.9rem"></p>
+    </div>
+  </section>
+
+  <div class="ad-slot">Advertisement</div>
+
+  <section class="content">
+    <h2>What is an emergency fund?</h2>
+    <p>An emergency fund is money set aside specifically for unplanned expenses — a job loss, a medical bill, a car breakdown, or an urgent home repair. It sits in a separate account from your everyday spending so you don't dip into it for routine purchases. The purpose is simple: when something expensive goes wrong, you cover it with savings instead of credit cards or loans. Financial planners call it the foundation of a sound financial plan because without it, a single unexpected expense can spiral into months of high-interest debt.</p>
+
+    <h2>How to use this calculator</h2>
+    <ol>
+      <li><strong>Enter your monthly essential expenses</strong> — rent, utilities, groceries, insurance, minimum debt payments, transport. Leave out discretionary spending you could cut in a crisis.</li>
+      <li><strong>Choose your coverage target</strong> — 3 months is a common starting point; 6 months gives more cushion for job loss or a single-income household.</li>
+      <li><strong>Add what you've saved so far</strong> and how much you can contribute each month. The calculator shows your target, how long it takes, and your progress bar.</li>
+    </ol>
+
+    <h2>Example</h2>
+    <p>Your essential expenses are <strong>$3,500/month</strong> and you want <strong>6 months</strong> of coverage — a <strong>$21,000</strong> target. You already have <strong>$2,000</strong> saved and can add <strong>$300/month</strong> to a high-yield account at <strong>4% APY</strong>. You're currently about <strong>10% funded</strong> and will reach your full target in roughly <strong>4 years 10 months</strong>, with interest covering about <strong>$1,800</strong> of the gap.</p>
+
+    <div class="note">An emergency fund is not an investment — prioritize safety and liquidity over returns. A high-yield savings account or money market fund is the standard choice. Avoid tying emergency money up in CDs with early withdrawal penalties or volatile assets.</div>
+
+    <h2>Frequently asked questions</h2>
+    <div class="faq">
+      <details><summary>How much should I have in an emergency fund?</summary><p>Most financial advisors recommend 3 to 6 months of essential expenses. Three months works for dual-income households with stable jobs; six months or more is better for single-income earners, freelancers, or anyone in a volatile industry.</p></details>
+      <details><summary>What counts as a monthly expense for an emergency fund?</summary><p>Focus on essentials you cannot skip: rent or mortgage, utilities, groceries, insurance premiums, minimum debt payments, transportation, and prescriptions. Leave out discretionary spending like dining out or subscriptions you could cancel in a crisis.</p></details>
+      <details><summary>Where should I keep my emergency fund?</summary><p>A high-yield savings account is ideal — it earns interest while keeping the money liquid and FDIC-insured. Avoid investing your emergency fund in the stock market since you may need it during a market downturn.</p></details>
+      <details><summary>Should I pay off debt or build an emergency fund first?</summary><p>Start with a small buffer of around $1,000 to avoid going deeper into debt for unexpected expenses. Then focus on high-interest debt. Once that's gone, build the fund to 3-6 months.</p></details>
+      <details><summary>How do I build an emergency fund on a tight budget?</summary><p>Start with whatever you can — even $25 or $50 a month. Automate the transfer so it happens without thinking. Every raise, bonus, or tax refund is a chance to add a lump sum. Small amounts add up.</p></details>
+    </div>
+
+    <div class="ad-slot">Advertisement</div>
+
+    <h2>Related tools</h2>
+    <ul class="related">
+      <li><a href="savings-goal-calculator.html">Savings Goal Calculator</a></li>
+      <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+      <li><a href="debt-payoff-calculator.html">Debt Payoff Calculator</a></li>
+      <li><a href="net-worth-calculator.html">Net Worth Calculator</a></li>
+    </ul>
+
+    <div class="ad-slot">Advertisement</div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <a href="../index.html">Home</a> · <a href="../about.html">About</a> · <a href="../privacy.html">Privacy</a>
+    <p class="disclaimer">MoneyCal calculators are for educational and estimation purposes only and do not constitute financial advice. Verify important figures with a qualified professional.</p>
+  </div>
+</footer>
+
+<script>
+"use strict";
+var MAX_MONTHS = 1200;
+
+function fmtMoney(n) { return "$" + Math.round(n).toLocaleString("en-US"); }
+function fmtTime(m) {
+  if (m === 0) return "Already funded";
+  var y = Math.floor(m / 12), mo = m % 12, p = [];
+  if (y) p.push(y + (y === 1 ? " yr" : " yrs"));
+  if (mo) p.push(mo + (mo === 1 ? " mo" : " mos"));
+  return p.join(" ");
+}
+
+function run() {
+  var expenses = Math.min(Math.max(parseFloat(document.getElementById("expenses").value) || 0, 0), 100000);
+  var months = Math.min(Math.max(Math.round(parseFloat(document.getElementById("months").value) || 0), 1), 24);
+  var saved = Math.min(Math.max(parseFloat(document.getElementById("saved").value) || 0, 0), 10000000);
+  var contribution = Math.min(Math.max(parseFloat(document.getElementById("contribution").value) || 0, 0), 1000000);
+  var apy = Math.min(Math.max(parseFloat(document.getElementById("apy").value) || 0, 0), 50);
+
+  var target = expenses * months;
+  var remaining = Math.max(0, target - saved);
+  var pct = target > 0 ? Math.min(100, (saved / target) * 100) : 100;
+
+  document.getElementById("headline").textContent = fmtMoney(target);
+  document.getElementById("v1").textContent = fmtMoney(saved);
+  document.getElementById("v2").textContent = remaining > 0 ? fmtMoney(remaining) : "$0";
+
+  // Simulate month-by-month to find time to fully funded
+  var i = apy / 100 / 12;
+  var balance = saved;
+  var m = 0;
+  var reached = balance >= target;
+  while (balance < target && m < MAX_MONTHS) {
+    m++;
+    balance = balance * (1 + i) + contribution;
+  }
+  reached = balance >= target;
+  var interest = balance - saved - (contribution * m);
+
+  document.getElementById("v3").textContent = saved >= target ? "Already funded" : (reached ? fmtTime(m) : "Not at this rate");
+  document.getElementById("v4").textContent = fmtMoney(Math.max(0, interest));
+
+  document.getElementById("bar").style.width = Math.round(pct) + "%";
+  document.getElementById("pctLabel").textContent = Math.round(pct) + "% funded";
+  document.getElementById("pctRemain").textContent = pct >= 100 ? "Fully funded" : fmtMoney(remaining) + " to go";
+
+  var note = document.getElementById("subnote");
+  if (saved >= target) {
+    note.textContent = "Your current savings already cover " + months + " months of expenses. Consider whether you need more cushion.";
+  } else if (reached) {
+    note.textContent = "Saving " + fmtMoney(contribution) + "/month at " + apy + "% APY, you'll be fully funded in " + fmtTime(m) + ".";
+  } else if (contribution === 0) {
+    note.textContent = "Add a monthly contribution to see how long it will take to reach your target.";
+  } else {
+    note.textContent = "At " + fmtMoney(contribution) + "/month, you won't reach your target within 100 years. Try increasing the amount.";
+  }
+
+  document.getElementById("result").classList.remove("hidden");
+}
+
+// Input clamping
+(function() {
+  document.querySelectorAll('input[type="number"]').forEach(function(el) {
+    el.addEventListener('input', function() {
+      var v = parseFloat(el.value);
+      if (isNaN(v)) return;
+      var mx = parseFloat(el.getAttribute('max'));
+      var mn = parseFloat(el.getAttribute('min')) || 0;
+      if (!isNaN(mx) && v > mx) el.value = mx;
+      if (!isNaN(mn) && v < mn) el.value = mn;
+    });
+  });
+})();
+
+document.getElementById("calcBtn").addEventListener("click", run);
+run();
+</script>
+</body>
+</html>
