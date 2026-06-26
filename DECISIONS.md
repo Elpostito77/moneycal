@@ -129,6 +129,7 @@ Slots contain the text "Advertisement" as placeholder until AdSense is configure
 | Net Worth | 📊 |
 | Emergency Fund | 🛟 |
 | Savings Rate | 💰 |
+| 50/30/20 Budget | 🧮 |
 
 ---
 
